@@ -5,10 +5,11 @@ using UnityEngine;
 public class Board : MonoBehaviour {
 
     [SerializeField]
-    BoardCoordinate boardCoordinate;
+    public BoardCoordinate boardCoordinate;
     
     int column;
     int row;
+    Vector3 pos;
 
     public void setColumn(int _column)
     {
@@ -20,16 +21,27 @@ public class Board : MonoBehaviour {
         row = _row;
     }
 
+    public void setPos(Vector3 _pos)
+    {
+        pos = _pos;
+    }
+    
+
 	// Use this for initialization
 	void Start () {
-        boardCoordinate = new BoardCoordinate(column, row, transform.position);
-        Debug.Log(boardCoordinate.getColumn());
+        boardCoordinate = new BoardCoordinate(column, row, pos);
+        //Debug.Log(boardCoordinate.getPos());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public Vector3 getBoardPiecePos()
+    {
+        return boardCoordinate.getPos();
+    }
 }
 
 [System.Serializable]
