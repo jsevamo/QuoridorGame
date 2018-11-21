@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Board : MonoBehaviour {
 
+    [SerializeField]
     BoardCoordinate boardCoordinate;
+    
+    int column;
+    int row;
+
+    public void setColumn(int _column)
+    {
+        column = _column;
+    }
+
+    public void setRow(int _row)
+    {
+        row = _row;
+    }
 
 	// Use this for initialization
 	void Start () {
-        boardCoordinate = new BoardCoordinate(8, 1);
+        boardCoordinate = new BoardCoordinate(column, row, transform.position);
         Debug.Log(boardCoordinate.getColumn());
-        Debug.Log(boardCoordinate.getRow());
 	}
 	
 	// Update is called once per frame
@@ -19,10 +32,10 @@ public class Board : MonoBehaviour {
 	}
 }
 
+[System.Serializable]
 public class BoardCoordinate
 {
-    
-
+    [SerializeField]
     public enum ColumnEmun
     {
         a,
@@ -36,13 +49,20 @@ public class BoardCoordinate
         i
     }
 
+    [SerializeField]
     int row;
+    [SerializeField]
     ColumnEmun column;
+    [SerializeField]
+    Vector3 pos;
 
-    public BoardCoordinate(int _column, int _row)
+    public BoardCoordinate(int _column, int _row, Vector3 _pos)
     {
         row = _row;
         column = (ColumnEmun)_column;
+        pos = _pos;
+
+        
     }
 
     public int getRow()
@@ -53,7 +73,15 @@ public class BoardCoordinate
     public ColumnEmun getColumn()
     {
         return column;
+       
+    }
+
+    public Vector3 getPos()
+    {
+        return pos;
     }
 
   
 }
+
+
