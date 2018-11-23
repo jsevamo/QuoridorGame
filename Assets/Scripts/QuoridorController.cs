@@ -13,7 +13,6 @@ public class QuoridorController : MonoBehaviour
 
     //Placeholder to keep all board pieces parented in the inspector.
     GameObject Board, Piece;
-    ArrayList wholeBoard = new ArrayList();
 
     Vector3 side1Start, side2Start, side3Start, side4Start;
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
@@ -23,6 +22,8 @@ public class QuoridorController : MonoBehaviour
     [SerializeField] private int actualTurn;
 
     private Piece movablePiece;
+    private Board board;
+    private Camera cam;
 
 
     // Use this for initialization
@@ -41,6 +42,9 @@ public class QuoridorController : MonoBehaviour
 
         isplaying = true;
         actualTurn = 0;
+        
+        board = new Board();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
 
         side1Start = side2Start = side3Start = side4Start = new Vector3(-1, -1, -1);
@@ -57,10 +61,11 @@ public class QuoridorController : MonoBehaviour
                 GameObject boardPiece =
                     Instantiate(BoardPiece, new Vector3(dX, 0, dZ), Quaternion.identity) as GameObject;
                 boardPiece.transform.parent = Board.gameObject.transform;
-                Board b = boardPiece.GetComponent<Board>();
+                BoardPiece b = boardPiece.GetComponent<BoardPiece>();
                 b.setColumn(j);
                 b.setRow(i + 1);
                 b.setPos(boardPiece.gameObject.transform.position);
+                board.AddPiece(b);
 
                 if (i == 0 && j == 4)
                 {
@@ -150,11 +155,14 @@ public class QuoridorController : MonoBehaviour
         {
             if (piecesOnBoard[i].getOrderInTurn() == actualTurn)
             {
-                Debug.Log("Player " + piecesOnBoard[i].getOrderInTurn() + " turn.");
+                Debug.Log("Player's " + piecesOnBoard[i].getOrderInTurn() + " turn.");
                 movablePiece = piecesOnBoard[i];
             }
-           
+
+            piecesOnBoard[i].IsTurnDone = false;
         }
+        
+        
 
        
      
@@ -164,12 +172,31 @@ public class QuoridorController : MonoBehaviour
     {
         if (isplaying)
         {
-            movablePiece.chooseMovingSpot();
-
-            if (Input.GetKeyDown("q"))
+       
+            waitForMove();
+           
+            if (movablePiece.IsTurnDone)
             {
                 ChangeTurn();
             }
+        }
+    }
+
+    void waitForMove()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+
+            if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                return;
+            }
+
+            BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
+                
+            movablePiece.MakeAMove(_boardPiece);
+
         }
     }
 }

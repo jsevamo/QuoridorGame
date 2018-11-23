@@ -9,6 +9,15 @@ public class Piece : MonoBehaviour
 
 	[SerializeField] private int orderInTurn;
 
+	private bool isTurnDone;
+
+	public bool IsTurnDone
+	{
+		get { return isTurnDone; }
+		set { isTurnDone = value; }
+	}
+
+
 	public void setOrderInTurn(int _orderInTurn)
 	{
 		orderInTurn = _orderInTurn;
@@ -24,6 +33,7 @@ public class Piece : MonoBehaviour
 	void Start()
 	{
 		setColor();
+		isTurnDone = false;
 	}
 
 	// Update is called once per frame
@@ -38,8 +48,14 @@ public class Piece : MonoBehaviour
 		colorOfPiece = GetComponent<Renderer>().material.color;
 	}
 
-	public void chooseMovingSpot()
+	public void MakeAMove(BoardPiece _boardPiece)
 	{
-		transform.position += new Vector3(0.01f,0,0);
+		transform.position = _boardPiece.getPos() + new Vector3(0,transform.localScale.y / 2, 0);
+
+		if (transform.position == _boardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0))
+		{
+			isTurnDone = true;
+		}
+			
 	}
 }

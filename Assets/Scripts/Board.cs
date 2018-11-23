@@ -1,99 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Board : MonoBehaviour {
-
-    [SerializeField]
-    public BoardCoordinate boardCoordinate;
-    
-    int column;
-    int row;
-    Vector3 pos;
-
-    public void setColumn(int _column)
-    {
-        column = _column;
-    }
-
-    public void setRow(int _row)
-    {
-        row = _row;
-    }
-
-    public void setPos(Vector3 _pos)
-    {
-        pos = _pos;
-    }
-    
-
-	// Use this for initialization
-	void Start () {
-        boardCoordinate = new BoardCoordinate(column, row, pos);
-        //Debug.Log(boardCoordinate.getPos());
-	}
+public class Board {
 	
-	// Update is called once per frame
-	void Update () {
-		
+	private List<BoardPiece> boardPieces = new List<BoardPiece>();
+
+	public List<BoardPiece> BoardPieces
+	{
+		get { return boardPieces; }
+		set { boardPieces = value; }
 	}
 
-    public Vector3 getBoardPiecePos()
-    {
-        return boardCoordinate.getPos();
-    }
+
+	public void AddPiece(BoardPiece _boardPiece)
+	{
+		boardPieces.Add(_boardPiece);
+	}
+
+	public int GetNumberOfPieces()
+	{
+		return boardPieces.Count();
+	}
 }
-
-[System.Serializable]
-public class BoardCoordinate
-{
-    [SerializeField]
-    public enum ColumnEmun
-    {
-        a,
-        b,
-        c,
-        d,
-        e,
-        f,
-        g,
-        h,
-        i
-    }
-
-    [SerializeField]
-    int row;
-    [SerializeField]
-    ColumnEmun column;
-    [SerializeField]
-    Vector3 pos;
-
-    public BoardCoordinate(int _column, int _row, Vector3 _pos)
-    {
-        row = _row;
-        column = (ColumnEmun)_column;
-        pos = _pos;
-
-        
-    }
-
-    public int getRow()
-    {
-        return row;
-    }
-
-    public ColumnEmun getColumn()
-    {
-        return column;
-       
-    }
-
-    public Vector3 getPos()
-    {
-        return pos;
-    }
-
-  
-}
-
-

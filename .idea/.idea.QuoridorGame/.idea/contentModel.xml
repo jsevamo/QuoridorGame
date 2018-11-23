@@ -7,6 +7,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Board.cs" t="Include" />
+          <e p="BoardPiece.cs" t="Include" />
           <e p="Piece.cs" t="Include" />
           <e p="QuoridorController.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
