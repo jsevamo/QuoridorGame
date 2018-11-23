@@ -14,13 +14,15 @@ public class QuoridorController : MonoBehaviour {
 
     Vector3 side1Start, side2Start, side3Start, side4Start;
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
+    List<Piece> piecesOnBoard = new List<Piece>();
 
 
 	// Use this for initialization
 	void Start () {
 
         CreateBoard();
-        setPlayPieces(NumberOfPlayers);		
+        SetPlayPieces(NumberOfPlayers);	
+	    ChooseOrder(NumberOfPlayers);
 	}
 
     void CreateBoard()
@@ -79,7 +81,7 @@ public class QuoridorController : MonoBehaviour {
 
     }
 
-    void setPlayPieces(int _numOfPlayers)
+    void SetPlayPieces(int _numOfPlayers)
     {
 
         Piece = new GameObject();
@@ -96,12 +98,29 @@ public class QuoridorController : MonoBehaviour {
             GameObject playPiece = Instantiate(PlayPiece, sidesToPlacePiece[i] + 
                 new Vector3(0,0.5f,0), Quaternion.identity) as GameObject;
             playPiece.transform.parent = Piece.gameObject.transform;
+            piecesOnBoard.Add(playPiece.GetComponent<Piece>());
         }
 
 
     }
-	
-	// Update is called once per frame
+
+    void ChooseOrder(int _numOfPlayers)
+    {
+        //int chooseStarter = Random.Range(0, 2);
+        int chooseStarter = 0;
+
+        if (chooseStarter == 0)
+        {
+            int order = 1;
+            foreach (var piece in piecesOnBoard)
+            {
+                piece.setOrderInTurn(order);
+                order++;
+            }
+        }
+    }
+
+    // Update is called once per frame
 	void Update () {
 		
 	}
