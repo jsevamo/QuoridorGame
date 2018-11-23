@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028353, g: 0.2257137, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardPiece: {fileID: 1108038604008966, guid: dfb2b176cc40cd548925d4d51799f5e3, type: 2}
   PlayPiece: {fileID: 1857718171287078, guid: a6e7c70e9cb2a3e4c80a0252d10c748e, type: 2}
-  sidesToPlacePiece: []
+  NumberOfPlayers: 2
 --- !u!1 &1555780640
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,10 +322,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1666909644}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.22367221, y: -0, z: -0, w: 0.9746645}
+  m_LocalPosition: {x: 4.86, y: 5.83, z: -5.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1555780641}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.85, y: 0, z: 0}

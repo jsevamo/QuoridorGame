@@ -6,21 +6,21 @@ public class QuoridorController : MonoBehaviour {
 
     public GameObject BoardPiece;
     public GameObject PlayPiece;
+    public int NumberOfPlayers;
     int boardSize;
     //Placeholder to keep all board pieces.
     GameObject Board, Piece;
     ArrayList wholeBoard = new ArrayList();
 
     Vector3 side1Start, side2Start, side3Start, side4Start;
-    public List<Vector3> sidesToPlacePiece = new List<Vector3>();
+    List<Vector3> sidesToPlacePiece = new List<Vector3>();
 
 
 	// Use this for initialization
 	void Start () {
 
         CreateBoard();
-        setPlayPieces(2);
-		
+        setPlayPieces(NumberOfPlayers);		
 	}
 
     void CreateBoard()
@@ -50,37 +50,32 @@ public class QuoridorController : MonoBehaviour {
                 if (i == 0 && j == 4)
                 {
                     side1Start = boardPiece.gameObject.transform.position;
-                    sidesToPlacePiece.Add(side1Start);
                 }
 
                 if (i == 4 && j == boardSize - 1)
                 {
                     side2Start = boardPiece.gameObject.transform.position;
-                    sidesToPlacePiece.Add(side2Start);
                 }
-
-                
 
                 if(i == 4 && j == 0)
                 {
                     side3Start = boardPiece.gameObject.transform.position;
-                    sidesToPlacePiece.Add(side3Start);
                 }
 
                 if (i == boardSize - 1 && j == 4)
                 {
                     side4Start = boardPiece.gameObject.transform.position;
-                    sidesToPlacePiece.Add(side4Start);
                 }
 
-
-
-                //wholeBoard.Add(boardPiece.GetComponent<Board>().getBoardCoordinate().);
                 dX = dX + BoardPiece.transform.localScale.x + offset;
             }
             dX = 0;
             dZ = dZ + BoardPiece.transform.localScale.z + offset;
         }
+        sidesToPlacePiece.Add(side1Start);
+        sidesToPlacePiece.Add(side4Start);
+        sidesToPlacePiece.Add(side2Start);
+        sidesToPlacePiece.Add(side3Start);
 
     }
 
