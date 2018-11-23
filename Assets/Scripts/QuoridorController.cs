@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
-public class QuoridorController : MonoBehaviour {
-
+public class QuoridorController : MonoBehaviour
+{
     public GameObject BoardPiece;
     public GameObject PlayPiece;
     public int NumberOfPlayers;
+
     int boardSize;
-    //Placeholder to keep all board pieces.
+
+    //Placeholder to keep all board pieces parented in the inspector.
     GameObject Board, Piece;
     ArrayList wholeBoard = new ArrayList();
 
@@ -16,22 +19,31 @@ public class QuoridorController : MonoBehaviour {
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
     List<Piece> piecesOnBoard = new List<Piece>();
 
+    private bool isplaying;
+    [SerializeField] private int actualTurn;
 
-	// Use this for initialization
-	void Start () {
+    private Piece movablePiece;
 
+
+    // Use this for initialization
+    void Start()
+    {
         CreateBoard();
-        SetPlayPieces(NumberOfPlayers);	
-	    ChooseOrder(NumberOfPlayers);
-	}
+        SetPlayPieces(NumberOfPlayers);
+        ChooseOrder(NumberOfPlayers);
+        ChangeTurn();
+    }
 
     void CreateBoard()
     {
         Board = new GameObject();
         Board.name = "BoardContainer";
 
+        isplaying = true;
+        actualTurn = 0;
 
-        side1Start = side2Start = side3Start = side4Start = new Vector3(-1, - 1, - 1);
+
+        side1Start = side2Start = side3Start = side4Start = new Vector3(-1, -1, -1);
 
         boardSize = 9;
         float dX = 0;
@@ -42,12 +54,13 @@ public class QuoridorController : MonoBehaviour {
         {
             for (int j = 0; j < boardSize; j++)
             {
-                GameObject boardPiece = Instantiate(BoardPiece, new Vector3(dX, 0, dZ), Quaternion.identity) as GameObject;
+                GameObject boardPiece =
+                    Instantiate(BoardPiece, new Vector3(dX, 0, dZ), Quaternion.identity) as GameObject;
                 boardPiece.transform.parent = Board.gameObject.transform;
                 Board b = boardPiece.GetComponent<Board>();
                 b.setColumn(j);
-                b.setRow(i+1);
-                b.setPos(boardPiece.gameObject.transform.position);                
+                b.setRow(i + 1);
+                b.setPos(boardPiece.gameObject.transform.position);
 
                 if (i == 0 && j == 4)
                 {
@@ -59,7 +72,7 @@ public class QuoridorController : MonoBehaviour {
                     side2Start = boardPiece.gameObject.transform.position;
                 }
 
-                if(i == 4 && j == 0)
+                if (i == 4 && j == 0)
                 {
                     side3Start = boardPiece.gameObject.transform.position;
                 }
@@ -71,19 +84,19 @@ public class QuoridorController : MonoBehaviour {
 
                 dX = dX + BoardPiece.transform.localScale.x + offset;
             }
+
             dX = 0;
             dZ = dZ + BoardPiece.transform.localScale.z + offset;
         }
+
         sidesToPlacePiece.Add(side1Start);
         sidesToPlacePiece.Add(side4Start);
         sidesToPlacePiece.Add(side2Start);
         sidesToPlacePiece.Add(side3Start);
-
     }
 
     void SetPlayPieces(int _numOfPlayers)
     {
-
         Piece = new GameObject();
         Piece.name = "PiecesContainer";
 
@@ -93,15 +106,13 @@ public class QuoridorController : MonoBehaviour {
             return;
         }
 
-        for(int i = 0; i < _numOfPlayers; i++)
+        for (int i = 0; i < _numOfPlayers; i++)
         {
-            GameObject playPiece = Instantiate(PlayPiece, sidesToPlacePiece[i] + 
-                new Vector3(0,0.5f,0), Quaternion.identity) as GameObject;
+            GameObject playPiece = Instantiate(PlayPiece, sidesToPlacePiece[i] +
+                                                          new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
             playPiece.transform.parent = Piece.gameObject.transform;
             piecesOnBoard.Add(playPiece.GetComponent<Piece>());
         }
-
-
     }
 
     void ChooseOrder(int _numOfPlayers)
@@ -121,9 +132,44 @@ public class QuoridorController : MonoBehaviour {
     }
 
     // Update is called once per frame
-	void Update () {
-		
-	}
+    void Update()
+    {
+        StartGame();
+    }
 
-    
+    void ChangeTurn()
+    {
+        if (actualTurn > NumberOfPlayers - 1)
+        {
+            actualTurn = 0;
+        }
+        
+        actualTurn++;
+
+        for (int i = 0; i < NumberOfPlayers; i++)
+        {
+            if (piecesOnBoard[i].getOrderInTurn() == actualTurn)
+            {
+                Debug.Log("Player " + piecesOnBoard[i].getOrderInTurn() + " turn.");
+                movablePiece = piecesOnBoard[i];
+            }
+           
+        }
+
+       
+     
+    }
+
+    void StartGame()
+    {
+        if (isplaying)
+        {
+            movablePiece.chooseMovingSpot();
+
+            if (Input.GetKeyDown("q"))
+            {
+                ChangeTurn();
+            }
+        }
+    }
 }

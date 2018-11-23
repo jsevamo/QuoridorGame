@@ -14,6 +14,11 @@ public class Piece : MonoBehaviour
 		orderInTurn = _orderInTurn;
 	}
 
+	public int getOrderInTurn()
+	{
+		return orderInTurn;
+	}
+
 
 	// Use this for initialization
 	void Start()
@@ -31,5 +36,10 @@ public class Piece : MonoBehaviour
 		gameObject.GetComponent<Renderer>().material.color =
 			new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
 		colorOfPiece = GetComponent<Renderer>().material.color;
+	}
+
+	public void chooseMovingSpot()
+	{
+		transform.position += new Vector3(0.01f,0,0);
 	}
 }
