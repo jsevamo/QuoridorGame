@@ -162,14 +162,14 @@ public class BoardPiece : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = col;
             }
-            /*else if (transform.position > )
-            {
-                
-            }*/
+
             else
             {
-                //gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1,1,1));
-                gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.74f, 0);
+                if (pieceCanBeMovedHere)
+                {
+                    gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.74f, 0);
+                }
+                
             }
         }
         else

@@ -10,6 +10,13 @@ public class Piece : MonoBehaviour
 	[SerializeField] private int orderInTurn;
 
 	private bool isTurnDone;
+	[SerializeField] private bool isCurrentlyPlaying;
+
+	public bool IsCurrentlyPlaying
+	{
+		get { return isCurrentlyPlaying; }
+		set { isCurrentlyPlaying = value; }
+	}
 
 	public bool IsTurnDone
 	{
@@ -34,6 +41,7 @@ public class Piece : MonoBehaviour
 	{
 		setColor();
 		isTurnDone = false;
+		isCurrentlyPlaying = false;
 	}
 
 	// Update is called once per frame
@@ -50,7 +58,11 @@ public class Piece : MonoBehaviour
 
 	public void MakeAMove(BoardPiece _boardPiece)
 	{
-		transform.position = _boardPiece.getPos() + new Vector3(0,transform.localScale.y / 2, 0);
+		if (_boardPiece.PieceCanBeMovedHere)
+		{
+			transform.position = _boardPiece.getPos() + new Vector3(0,transform.localScale.y / 2, 0);
+		}
+		
 
 		if (transform.position == _boardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0))
 		{

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Boo.Lang.Runtime.DynamicDispatching;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -26,6 +27,8 @@ public class QuoridorController : MonoBehaviour
     private Board board;
     private Camera cam;
 
+    private int numberOfTurns;
+
 
     // Use this for initialization
     void Start()
@@ -33,6 +36,7 @@ public class QuoridorController : MonoBehaviour
         CreateBoard();
         SetPlayPieces(NumberOfPlayers);
         ChooseOrder(NumberOfPlayers);
+        numberOfTurns = 0;
         ChangeTurn();
     }
 
@@ -141,12 +145,17 @@ public class QuoridorController : MonoBehaviour
     void Update()
     {
         StartGame();
-        
-        
+
     }
 
     void ChangeTurn()
     {
+
+        if (numberOfTurns > 0)
+        {
+            movablePiece.IsCurrentlyPlaying = false;
+        }
+        
         if (actualTurn > NumberOfPlayers - 1)
         {
             actualTurn = 0;
@@ -171,8 +180,8 @@ public class QuoridorController : MonoBehaviour
             _pieceOfBoard.PieceCanBeMovedHere = false;
         }
 
-       
-     
+        numberOfTurns++;
+
     }
 
     void StartGame()
@@ -181,6 +190,7 @@ public class QuoridorController : MonoBehaviour
         {
             
             WaitForMove();
+            CheckWhoIsCurrentlyPlaying();
             HighlightBoardPiece();
             CheckWhereIsPlayer();
            
@@ -191,20 +201,34 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
+    void CheckWhoIsCurrentlyPlaying()
+    {
+        
+        if (movablePiece.getOrderInTurn() == actualTurn)
+        {
+            movablePiece.IsCurrentlyPlaying = true;
+        }
+        
+    }
+
     void CheckWhereIsPlayer()
     {
         for (int i = 0; i < NumberOfPlayers; i++)
         {
             foreach (var _boardPiece in board.BoardPieces)
             {
-                _boardPiece.checkIfPlayerOnTop(piecesOnBoard[i]);
+                
+                _boardPiece.checkIfPlayerOnTop(movablePiece);
             }
+            
+            
         }
         
     }
 
     void WaitForMove()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -223,6 +247,9 @@ public class QuoridorController : MonoBehaviour
 
     void HighlightBoardPiece()
     {
+        
+      
+        
         foreach (var _boardPiece in board.BoardPieces)
         {
             if (_boardPiece.HasPlayerOnTop)
