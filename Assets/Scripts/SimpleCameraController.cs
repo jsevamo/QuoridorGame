@@ -70,10 +70,19 @@ namespace UnityTemplateProjects
         [Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
         public bool invertY = false;
 
+        private bool isCameraMoving;
+
+        public bool IsCameraMoving
+        {
+            get { return isCameraMoving; }
+            set { isCameraMoving = value; }
+        }
+
         void OnEnable()
         {
             m_TargetCameraState.SetFromTransform(transform);
             m_InterpolatingCameraState.SetFromTransform(transform);
+            isCameraMoving = false;
         }
 
         Vector3 GetInputTranslationDirection()
@@ -139,7 +148,14 @@ namespace UnityTemplateProjects
 
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
+
+                isCameraMoving = true;
             }
+            else
+            {
+                isCameraMoving = false;
+            }
+            
             
             // Translation
             var translation = GetInputTranslationDirection() * Time.deltaTime;

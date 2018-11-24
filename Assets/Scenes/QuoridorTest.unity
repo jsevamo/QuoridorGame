@@ -156,6 +156,7 @@ MonoBehaviour:
   BoardPiece: {fileID: 1108038604008966, guid: dfb2b176cc40cd548925d4d51799f5e3, type: 2}
   PlayPiece: {fileID: 1857718171287078, guid: a6e7c70e9cb2a3e4c80a0252d10c748e, type: 2}
   NumberOfPlayers: 2
+  actualTurn: 0
 --- !u!1 &1555780640
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +263,7 @@ GameObject:
   - component: {fileID: 1666909647}
   - component: {fileID: 1666909646}
   - component: {fileID: 1666909645}
+  - component: {fileID: 1666909648}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -329,3 +331,42 @@ Transform:
   m_Father: {fileID: 1555780641}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25.85, y: 0, z: 0}
+--- !u!114 &1666909648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666909644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be76e5f14cfee674cb30b491fb72b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boost: 3.5
+  positionLerpTime: 0.2
+  mouseSensitivityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationLerpTime: 0.01
+  invertY: 0

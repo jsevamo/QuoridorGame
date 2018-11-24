@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4905311228025036}
   - component: {fileID: 33927220691935026}
   - component: {fileID: 23704709349291836}
-  - component: {fileID: 135684315033016636}
   - component: {fileID: 114359077151882334}
   m_Layer: 0
   m_Name: PieceP
@@ -96,15 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabb6e020d25ddc4b9dab2139fc1b744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135684315033016636
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857718171287078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  colorOfPiece: {r: 0, g: 0, b: 0, a: 0}
+  orderInTurn: 0
+  isCurrentlyPlaying: 0

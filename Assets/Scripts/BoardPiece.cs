@@ -50,12 +50,12 @@ public class BoardPiece : MonoBehaviour
     [SerializeField] private BoardPiece leftBoard;
     [SerializeField] private BoardPiece backBoard;
 
-    [SerializeField] private bool hasPlayerOnTop;
+    [SerializeField] private bool hasActivePlayerOnTop;
 
-    public bool HasPlayerOnTop
+    public bool HasActivePlayerOnTop
     {
-        get { return hasPlayerOnTop; }
-        set { hasPlayerOnTop = value; }
+        get { return hasActivePlayerOnTop; }
+        set { hasActivePlayerOnTop = value; }
     }
 
 
@@ -87,7 +87,7 @@ public class BoardPiece : MonoBehaviour
         isHighlighted = false;
         col = gameObject.GetComponent<Renderer>().material.color;
         frontBoard = leftBoard = rightBoard = backBoard = null;
-        hasPlayerOnTop = false;
+        hasActivePlayerOnTop = false;
         pieceCanBeMovedHere = false;
 
         
@@ -104,14 +104,14 @@ public class BoardPiece : MonoBehaviour
         
     }
 
-    public void checkIfPlayerOnTop(Piece _piece)
+    public void checkIfActivePlayerOnTop(Piece _piece)
     {
         
 
         if (Mathf.Approximately(transform.position.x, _piece.gameObject.transform.position.x) &&
             Mathf.Approximately(transform.position.z, _piece.gameObject.transform.position.z))
         {
-            hasPlayerOnTop = true;
+            hasActivePlayerOnTop = true;
         }
        
         

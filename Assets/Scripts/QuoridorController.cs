@@ -4,6 +4,7 @@ using System.Linq;
 using Boo.Lang.Runtime.DynamicDispatching;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityTemplateProjects;
 
 public class QuoridorController : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class QuoridorController : MonoBehaviour
         ChooseOrder(NumberOfPlayers);
         numberOfTurns = 0;
         ChangeTurn();
+        
+        Debug.Log("THE GAME HAS STARTED :D");
     }
 
     void CreateBoard()
@@ -176,7 +179,7 @@ public class QuoridorController : MonoBehaviour
 
         foreach (var _pieceOfBoard in board.BoardPieces)
         {
-            _pieceOfBoard.HasPlayerOnTop = false;
+            _pieceOfBoard.HasActivePlayerOnTop = false;
             _pieceOfBoard.PieceCanBeMovedHere = false;
         }
 
@@ -218,7 +221,7 @@ public class QuoridorController : MonoBehaviour
             foreach (var _boardPiece in board.BoardPieces)
             {
                 
-                _boardPiece.checkIfPlayerOnTop(movablePiece);
+                _boardPiece.checkIfActivePlayerOnTop(movablePiece);
             }
             
             
@@ -231,16 +234,19 @@ public class QuoridorController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
+           
+                RaycastHit hit;
 
-            if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
-            {
-                return;
-            }
+                if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    return;
+                }
 
-            BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
+                BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
                 
-            movablePiece.MakeAMove(_boardPiece);
+                movablePiece.MakeAMove(_boardPiece);
+            
+            
 
         }
     }
@@ -252,7 +258,7 @@ public class QuoridorController : MonoBehaviour
         
         foreach (var _boardPiece in board.BoardPieces)
         {
-            if (_boardPiece.HasPlayerOnTop)
+            if (_boardPiece.HasActivePlayerOnTop)
             {
                 if (_boardPiece.FrontBoard != null)
                 {
@@ -278,16 +284,22 @@ public class QuoridorController : MonoBehaviour
                
             }
         }
-        
-        
+
+
+               
         RaycastHit hit;
         
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
            
         {
             BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
+
+            if (!cam.GetComponent<SimpleCameraController>().IsCameraMoving)
+            {
+                _boardPiece.setHighlight(true, movablePiece, board);
+            }
             
-            _boardPiece.setHighlight(true, movablePiece, board);
+            
         }
         else
         {

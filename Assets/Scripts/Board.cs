@@ -31,7 +31,7 @@ public class Board {
 
 		foreach (var _boardPiece in boardPieces)
 		{
-			if (_boardPiece.HasPlayerOnTop)
+			if (_boardPiece.HasActivePlayerOnTop)
 			{
 				BPList.Add((_boardPiece));
 			}
