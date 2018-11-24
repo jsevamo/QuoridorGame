@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -140,6 +141,8 @@ public class QuoridorController : MonoBehaviour
     void Update()
     {
         StartGame();
+        
+        
     }
 
     void ChangeTurn()
@@ -161,8 +164,12 @@ public class QuoridorController : MonoBehaviour
 
             piecesOnBoard[i].IsTurnDone = false;
         }
-        
-        
+
+        foreach (var _pieceOfBoard in board.BoardPieces)
+        {
+            _pieceOfBoard.HasPlayerOnTop = false;
+            _pieceOfBoard.PieceCanBeMovedHere = false;
+        }
 
        
      
@@ -172,8 +179,10 @@ public class QuoridorController : MonoBehaviour
     {
         if (isplaying)
         {
-       
-            waitForMove();
+            
+            WaitForMove();
+            HighlightBoardPiece();
+            CheckWhereIsPlayer();
            
             if (movablePiece.IsTurnDone)
             {
@@ -182,7 +191,19 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
-    void waitForMove()
+    void CheckWhereIsPlayer()
+    {
+        for (int i = 0; i < NumberOfPlayers; i++)
+        {
+            foreach (var _boardPiece in board.BoardPieces)
+            {
+                _boardPiece.checkIfPlayerOnTop(piecesOnBoard[i]);
+            }
+        }
+        
+    }
+
+    void WaitForMove()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -198,5 +219,60 @@ public class QuoridorController : MonoBehaviour
             movablePiece.MakeAMove(_boardPiece);
 
         }
+    }
+
+    void HighlightBoardPiece()
+    {
+        foreach (var _boardPiece in board.BoardPieces)
+        {
+            if (_boardPiece.HasPlayerOnTop)
+            {
+                if (_boardPiece.FrontBoard != null)
+                {
+                    _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                }
+
+                if (_boardPiece.RightBoard != null)
+                {
+                    _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                }
+
+                if (_boardPiece.LeftBoard != null)
+                {
+                    _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                }
+
+                if (_boardPiece.BackBoard != null)
+                {
+                    _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                }
+                
+                
+               
+            }
+        }
+        
+        
+        RaycastHit hit;
+        
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+           
+        {
+            BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
+            
+            _boardPiece.setHighlight(true, movablePiece, board);
+        }
+        else
+        {
+            
+            foreach (var boardPiece in board.BoardPieces)
+            {
+                boardPiece.setHighlight(false, movablePiece, board);
+            }
+        }
+        
+
+        
+        
     }
 }
