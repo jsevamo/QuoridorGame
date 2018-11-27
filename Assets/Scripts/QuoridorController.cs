@@ -24,11 +24,12 @@ public class QuoridorController : MonoBehaviour
     private bool isplaying;
     [SerializeField] private int actualTurn;
 
-    private Piece movablePiece;
+    [SerializeField] private Piece movablePiece;
     private Board board;
     private Camera cam;
 
     private int numberOfTurns;
+    private GameObject centerPiece;
 
 
     // Use this for initialization
@@ -39,7 +40,7 @@ public class QuoridorController : MonoBehaviour
         ChooseOrder(NumberOfPlayers);
         numberOfTurns = 0;
         ChangeTurn();
-        
+
         Debug.Log("THE GAME HAS STARTED :D");
     }
 
@@ -50,7 +51,7 @@ public class QuoridorController : MonoBehaviour
 
         isplaying = true;
         actualTurn = 0;
-        
+
         board = new Board();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
@@ -75,6 +76,8 @@ public class QuoridorController : MonoBehaviour
                 b.setPos(boardPiece.gameObject.transform.position);
                 board.AddPiece(b);
 
+                //Set starting pieces positions.
+
                 if (i == 0 && j == 4)
                 {
                     side1Start = boardPiece.gameObject.transform.position;
@@ -94,6 +97,12 @@ public class QuoridorController : MonoBehaviour
                 {
                     side4Start = boardPiece.gameObject.transform.position;
                 }
+
+                if (j == 4 && i == 4)
+                {
+                    centerPiece = boardPiece.gameObject;
+                }
+
 
                 dX = dX + BoardPiece.transform.localScale.x + offset;
             }
@@ -122,8 +131,13 @@ public class QuoridorController : MonoBehaviour
         for (int i = 0; i < _numOfPlayers; i++)
         {
             GameObject playPiece = Instantiate(PlayPiece, sidesToPlacePiece[i] +
-                                                          new Vector3(0, 0.5f, 0), Quaternion.identity) as GameObject;
+                                                          new Vector3(0, 0.5f, 0),
+                Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 1)) as GameObject;
             playPiece.transform.parent = Piece.gameObject.transform;
+
+            playPiece.transform.LookAt(centerPiece.transform.position + new Vector3(0, 0.5f, 0));
+
+
             piecesOnBoard.Add(playPiece.GetComponent<Piece>());
         }
     }
@@ -148,22 +162,21 @@ public class QuoridorController : MonoBehaviour
     void Update()
     {
         StartGame();
-
     }
 
     void ChangeTurn()
     {
-
         if (numberOfTurns > 0)
         {
             movablePiece.IsCurrentlyPlaying = false;
+            movablePiece.CurrentBoardPiece = null;
         }
-        
+
         if (actualTurn > NumberOfPlayers - 1)
         {
             actualTurn = 0;
         }
-        
+
         actualTurn++;
 
         for (int i = 0; i < NumberOfPlayers; i++)
@@ -184,19 +197,18 @@ public class QuoridorController : MonoBehaviour
         }
 
         numberOfTurns++;
-
     }
 
     void StartGame()
     {
         if (isplaying)
         {
-            
             WaitForMove();
             CheckWhoIsCurrentlyPlaying();
             HighlightBoardPiece();
             CheckWhereIsPlayer();
-           
+            CheckIfWin();
+
             if (movablePiece.IsTurnDone)
             {
                 ChangeTurn();
@@ -204,14 +216,26 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
+    void CheckIfWin()
+    {
+        foreach (var _piece in piecesOnBoard)
+        {
+            if (_piece.NumPlaysForward == boardSize - 1)
+            {
+                isplaying = false;
+
+                Debug.Log("Player " + movablePiece.getOrderInTurn() + " has won the game!");
+            }
+        }
+    }
+
+
     void CheckWhoIsCurrentlyPlaying()
     {
-        
         if (movablePiece.getOrderInTurn() == actualTurn)
         {
             movablePiece.IsCurrentlyPlaying = true;
         }
-        
     }
 
     void CheckWhereIsPlayer()
@@ -220,42 +244,38 @@ public class QuoridorController : MonoBehaviour
         {
             foreach (var _boardPiece in board.BoardPieces)
             {
-                
                 _boardPiece.checkIfActivePlayerOnTop(movablePiece);
             }
-            
-            
         }
-        
+
+        for (int i = 0; i < board.GetNumberOfPieces(); i++)
+        {
+            if (board.BoardPieces[i].HasActivePlayerOnTop)
+            {
+                movablePiece.CurrentBoardPiece = board.BoardPieces[i];
+            }
+        }
     }
 
     void WaitForMove()
     {
-        
         if (Input.GetMouseButtonDown(0))
         {
-           
-                RaycastHit hit;
+            RaycastHit hit;
 
-                if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
-                {
-                    return;
-                }
+            if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                return;
+            }
 
-                BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
-                
-                movablePiece.MakeAMove(_boardPiece);
-            
-            
+            BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
 
+            movablePiece.MakeAMove(_boardPiece, movablePiece.transform.forward);
         }
     }
 
     void HighlightBoardPiece()
     {
-        
-      
-        
         foreach (var _boardPiece in board.BoardPieces)
         {
             if (_boardPiece.HasActivePlayerOnTop)
@@ -279,18 +299,14 @@ public class QuoridorController : MonoBehaviour
                 {
                     _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                 }
-                
-                
-               
             }
         }
 
 
-               
         RaycastHit hit;
-        
+
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
-           
+
         {
             BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
 
@@ -298,20 +314,13 @@ public class QuoridorController : MonoBehaviour
             {
                 _boardPiece.setHighlight(true, movablePiece, board);
             }
-            
-            
         }
         else
         {
-            
             foreach (var boardPiece in board.BoardPieces)
             {
                 boardPiece.setHighlight(false, movablePiece, board);
             }
         }
-        
-
-        
-        
     }
 }

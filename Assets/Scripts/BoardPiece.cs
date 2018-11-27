@@ -52,6 +52,7 @@ public class BoardPiece : MonoBehaviour
 
     [SerializeField] private bool hasActivePlayerOnTop;
 
+
     public bool HasActivePlayerOnTop
     {
         get { return hasActivePlayerOnTop; }
@@ -90,10 +91,9 @@ public class BoardPiece : MonoBehaviour
         hasActivePlayerOnTop = false;
         pieceCanBeMovedHere = false;
 
-        
 
         FindNeighbors();
-        
+
 
         //Debug.Log(boardCoordinate.getPos());
     }
@@ -101,20 +101,15 @@ public class BoardPiece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void checkIfActivePlayerOnTop(Piece _piece)
     {
-        
-
         if (Mathf.Approximately(transform.position.x, _piece.gameObject.transform.position.x) &&
             Mathf.Approximately(transform.position.z, _piece.gameObject.transform.position.z))
         {
             hasActivePlayerOnTop = true;
         }
-       
-        
     }
 
     void FindNeighbors()
@@ -125,22 +120,21 @@ public class BoardPiece : MonoBehaviour
         {
             frontBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
         }
-        
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit))
         {
             rightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
         }
-        
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit))
         {
             leftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
         }
-        
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit))
         {
             backBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
         }
-        
     }
 
     public Vector3 getBoardPiecePos()
@@ -151,9 +145,7 @@ public class BoardPiece : MonoBehaviour
     public void setHighlight(bool _isHighlighted, Piece _piece, Board _board)
     {
         isHighlighted = _isHighlighted;
-        
-        
-        
+
 
         if (isHighlighted)
         {
@@ -169,7 +161,6 @@ public class BoardPiece : MonoBehaviour
                 {
                     gameObject.GetComponent<Renderer>().material.color = new Color(0, 0.74f, 0);
                 }
-                
             }
         }
         else
@@ -177,10 +168,6 @@ public class BoardPiece : MonoBehaviour
             gameObject.GetComponent<Renderer>().material.color = col;
         }
     }
-
-    
-    
-    
 }
 
 [System.Serializable]

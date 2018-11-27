@@ -25,18 +25,4 @@ public class Board {
 		return boardPieces.Count();
 	}
 
-	public List<BoardPiece> GetCurrentBoardPiece()
-	{
-		List<BoardPiece> BPList = new List<BoardPiece>();
-
-		foreach (var _boardPiece in boardPieces)
-		{
-			if (_boardPiece.HasActivePlayerOnTop)
-			{
-				BPList.Add((_boardPiece));
-			}
-		}
-
-		return BPList;
-	}
 }

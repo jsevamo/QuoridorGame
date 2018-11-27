@@ -155,8 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardPiece: {fileID: 1108038604008966, guid: dfb2b176cc40cd548925d4d51799f5e3, type: 2}
   PlayPiece: {fileID: 1857718171287078, guid: a6e7c70e9cb2a3e4c80a0252d10c748e, type: 2}
-  NumberOfPlayers: 2
+  NumberOfPlayers: 4
   actualTurn: 0
+  movablePiece: {fileID: 0}
 --- !u!1 &1555780640
 GameObject:
   m_ObjectHideFlags: 0

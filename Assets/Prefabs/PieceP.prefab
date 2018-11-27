@@ -98,3 +98,6 @@ MonoBehaviour:
   colorOfPiece: {r: 0, g: 0, b: 0, a: 0}
   orderInTurn: 0
   isCurrentlyPlaying: 0
+  hasWon: 0
+  forwardVector: {x: 0, y: 0, z: 0}
+  currentBoardPiece: {fileID: 0}
