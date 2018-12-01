@@ -89,27 +89,37 @@ public class Piece : MonoBehaviour
 		//-----------------------------------------------------------
 
 		BoardPiece boardForward = null;
+		BoardPiece boardForwardTwice = null;
 		BoardPiece boardBackWard = null;
+		BoardPiece boardBackWardTwice = null;
 
 		if (Mathf.Approximately(Vector3.Dot(_forwardV, Vector3.forward), 1))
 		{
 			boardForward = currentBoardPiece.FrontBoard;
+			boardForwardTwice = currentBoardPiece.FrontFrontBoard;
 			boardBackWard = currentBoardPiece.BackBoard;
+			boardBackWardTwice = currentBoardPiece.BackBackBoard;
 		}
 		else if (Mathf.Approximately(Vector3.Dot(_forwardV, Vector3.back), 1))
 		{
 			boardForward = currentBoardPiece.BackBoard;
+			boardForwardTwice = currentBoardPiece.BackBackBoard;
 			boardBackWard = currentBoardPiece.FrontBoard;
+			boardBackWardTwice = currentBoardPiece.FrontFrontBoard;
 		}
 		else if (Mathf.Approximately(Vector3.Dot(_forwardV, Vector3.right), 1))
 		{
 			boardForward = currentBoardPiece.RightBoard;
+			boardForwardTwice = currentBoardPiece.RightRightBoard;
 			boardBackWard = currentBoardPiece.LeftBoard;
+			boardBackWardTwice = currentBoardPiece.LeftLeftBoard;
 		}
 		else if (Mathf.Approximately(Vector3.Dot(_forwardV, Vector3.left), 1))
 		{
 			boardForward = currentBoardPiece.LeftBoard;
+			boardForwardTwice = currentBoardPiece.LeftLeftBoard;
 			boardBackWard = currentBoardPiece.RightBoard;
+			boardBackWardTwice = currentBoardPiece.RightRightBoard;
 		}
 
 		if (_selectedBoardPiece == boardForward)
@@ -117,9 +127,19 @@ public class Piece : MonoBehaviour
 			numPlaysForward++;
 		}
 
+		else if (_selectedBoardPiece == boardForwardTwice)
+		{
+			numPlaysForward = numPlaysForward + 2;
+		}
+
 		else if (_selectedBoardPiece == boardBackWard)
 		{
 			numPlaysForward--;
+		}
+		
+		else if (_selectedBoardPiece == boardBackWardTwice)
+		{
+			numPlaysForward = numPlaysForward - 2;
 		}
 	}
 }

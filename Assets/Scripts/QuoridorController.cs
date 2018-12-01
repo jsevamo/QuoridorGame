@@ -194,6 +194,7 @@ public class QuoridorController : MonoBehaviour
         foreach (var _pieceOfBoard in board.BoardPieces)
         {
             _pieceOfBoard.HasActivePlayerOnTop = false;
+            _pieceOfBoard.HasPlayerOnTop = false;
             _pieceOfBoard.PieceCanBeMovedHere = false;
         }
 
@@ -298,14 +299,17 @@ public class QuoridorController : MonoBehaviour
         {
             if (_boardPiece.HasActivePlayerOnTop)
             {
-                if (_boardPiece.FrontBoard != null && !_boardPiece.FrontBoard.HasPlayerOnTop)
+                if (_boardPiece.FrontBoard != null)
                 {
-                    _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
-                }
-                else if (_boardPiece.FrontBoard != null && _boardPiece.FrontBoard.HasPlayerOnTop)
-                {
+                    if (!_boardPiece.FrontBoard.HasPlayerOnTop)
+                    {
+                        _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                    }
                     
                 }
+
+                
+                
 
                 if (_boardPiece.RightBoard != null && !_boardPiece.RightBoard.HasPlayerOnTop)
                 {
@@ -317,12 +321,22 @@ public class QuoridorController : MonoBehaviour
                     _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
                 }
 
-                if (_boardPiece.BackBoard != null && !_boardPiece.BackBoard.HasPlayerOnTop)
+                if (_boardPiece.BackBoard != null)
                 {
-                    _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                    if (!_boardPiece.BackBoard.HasPlayerOnTop)
+                    {
+                        _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                    }
+                    else
+                    {
+                        _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                    }
+                    
                 }
             }
         }
+        
+        
 
 
         RaycastHit hit;
@@ -336,6 +350,8 @@ public class QuoridorController : MonoBehaviour
             {
                 _boardPiece.setHighlight(true, movablePiece, board);
             }
+
+            
         }
         else
         {

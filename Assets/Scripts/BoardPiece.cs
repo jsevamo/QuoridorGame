@@ -52,6 +52,31 @@ public class BoardPiece : MonoBehaviour
 
 
     [SerializeField] private BoardPiece frontFrontBoard;
+
+    public BoardPiece FrontFrontBoard
+    {
+        get { return frontFrontBoard; }
+        set { frontFrontBoard = value; }
+    }
+
+    public BoardPiece RightRightBoard
+    {
+        get { return rightRightBoard; }
+        set { rightRightBoard = value; }
+    }
+
+    public BoardPiece LeftLeftBoard
+    {
+        get { return leftLeftBoard; }
+        set { leftLeftBoard = value; }
+    }
+
+    public BoardPiece BackBackBoard
+    {
+        get { return backBackBoard; }
+        set { backBackBoard = value; }
+    }
+
     [SerializeField] private BoardPiece rightRightBoard;
     [SerializeField] private BoardPiece leftLeftBoard;
     [SerializeField] private BoardPiece backBackBoard;
