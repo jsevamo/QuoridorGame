@@ -74,14 +74,14 @@ public class Piece : MonoBehaviour
 		colorOfPiece = GetComponent<Renderer>().material.color;
 	}
 
-	public void MakeAMove(BoardPiece _boardPiece, Vector3 _forwardV)
+	public void MakeAMove(BoardPiece _selectedBoardPiece, Vector3 _forwardV)
 	{
-		if (_boardPiece.PieceCanBeMovedHere)
+		if (_selectedBoardPiece.PieceCanBeMovedHere)
 		{
-			transform.position = _boardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0);
+			transform.position = _selectedBoardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0);
 		}
 
-		if (transform.position == _boardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0))
+		if (transform.position == _selectedBoardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0))
 		{
 			isTurnDone = true;
 		}
@@ -112,12 +112,12 @@ public class Piece : MonoBehaviour
 			boardBackWard = currentBoardPiece.RightBoard;
 		}
 
-		if (_boardPiece == boardForward)
+		if (_selectedBoardPiece == boardForward)
 		{
 			numPlaysForward++;
 		}
 
-		else if (_boardPiece == boardBackWard)
+		else if (_selectedBoardPiece == boardBackWard)
 		{
 			numPlaysForward--;
 		}

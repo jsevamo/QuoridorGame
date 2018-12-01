@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Boo.Lang.Runtime.DynamicDispatching;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -246,7 +247,15 @@ public class QuoridorController : MonoBehaviour
             {
                 _boardPiece.checkIfActivePlayerOnTop(movablePiece);
             }
+
+            foreach (var _boardPiece in board.BoardPieces)
+            {
+                _boardPiece.checkIfAnyPlayerOnTop(piecesOnBoard[i]);
+            }
         }
+        
+        
+        
 
         for (int i = 0; i < board.GetNumberOfPieces(); i++)
         {
@@ -270,7 +279,16 @@ public class QuoridorController : MonoBehaviour
 
             BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
 
-            movablePiece.MakeAMove(_boardPiece, movablePiece.transform.forward);
+            
+
+            if (!_boardPiece.HasPlayerOnTop)
+            {
+                movablePiece.MakeAMove(_boardPiece, movablePiece.transform.forward);
+            }
+            else
+            {
+                //Debug.Log("MotherFcuker");
+            }
         }
     }
 
@@ -280,22 +298,26 @@ public class QuoridorController : MonoBehaviour
         {
             if (_boardPiece.HasActivePlayerOnTop)
             {
-                if (_boardPiece.FrontBoard != null)
+                if (_boardPiece.FrontBoard != null && !_boardPiece.FrontBoard.HasPlayerOnTop)
                 {
                     _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
                 }
+                else if (_boardPiece.FrontBoard != null && _boardPiece.FrontBoard.HasPlayerOnTop)
+                {
+                    
+                }
 
-                if (_boardPiece.RightBoard != null)
+                if (_boardPiece.RightBoard != null && !_boardPiece.RightBoard.HasPlayerOnTop)
                 {
                     _boardPiece.RightBoard.PieceCanBeMovedHere = true;
                 }
 
-                if (_boardPiece.LeftBoard != null)
+                if (_boardPiece.LeftBoard != null && !_boardPiece.LeftBoard.HasPlayerOnTop)
                 {
                     _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
                 }
 
-                if (_boardPiece.BackBoard != null)
+                if (_boardPiece.BackBoard != null && !_boardPiece.BackBoard.HasPlayerOnTop)
                 {
                     _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                 }

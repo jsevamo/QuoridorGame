@@ -50,7 +50,21 @@ public class BoardPiece : MonoBehaviour
     [SerializeField] private BoardPiece leftBoard;
     [SerializeField] private BoardPiece backBoard;
 
+
+    [SerializeField] private BoardPiece frontFrontBoard;
+    [SerializeField] private BoardPiece rightRightBoard;
+    [SerializeField] private BoardPiece leftLeftBoard;
+    [SerializeField] private BoardPiece backBackBoard;
+    
+
     [SerializeField] private bool hasActivePlayerOnTop;
+    [SerializeField] private bool hasPlayerOnTop;
+
+    public bool HasPlayerOnTop
+    {
+        get { return hasPlayerOnTop; }
+        set { hasPlayerOnTop = value; }
+    }
 
 
     public bool HasActivePlayerOnTop
@@ -89,6 +103,7 @@ public class BoardPiece : MonoBehaviour
         col = gameObject.GetComponent<Renderer>().material.color;
         frontBoard = leftBoard = rightBoard = backBoard = null;
         hasActivePlayerOnTop = false;
+        hasPlayerOnTop = false;
         pieceCanBeMovedHere = false;
 
 
@@ -111,30 +126,103 @@ public class BoardPiece : MonoBehaviour
             hasActivePlayerOnTop = true;
         }
     }
+    
+    public void checkIfAnyPlayerOnTop(Piece _piece)
+    {
+        if (Mathf.Approximately(transform.position.x, _piece.gameObject.transform.position.x) &&
+            Mathf.Approximately(transform.position.z, _piece.gameObject.transform.position.z))
+        {
+            hasPlayerOnTop = true;
+        }
+    }
+    
+    
 
     void FindNeighbors()
     {
         RaycastHit hit;
+        GameObject frontBoard2 = null;
+        GameObject rightBoard2 = null;
+        GameObject leftBoard2 = null;
+        GameObject backBoard2 = null;
+        
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
         {
             frontBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            frontBoard2 = hit.transform.gameObject;
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit))
         {
             rightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            rightBoard2 = hit.transform.gameObject;
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit))
         {
             leftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            leftBoard2 = hit.transform.gameObject;
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit))
         {
             backBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            backBoard2 = hit.transform.gameObject;
         }
+        
+        //-----------------------------------------------------------
+        
+        //TODO: FIX THE BOARD2'S POSITION ON THE IFS
+        if (frontBoard != null)
+        {
+            if (Physics.Raycast(frontBoard2.transform.position, 
+                transform.TransformDirection(Vector3.forward), out hit))
+            {
+                frontFrontBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            }
+        }
+
+        if (rightBoard == null) return;
+        if (Physics.Raycast(rightBoard2.transform.position, 
+            transform.TransformDirection(Vector3.right), out hit))
+        {
+            rightRightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }
+
+        if (leftBoard == null) return;
+        if (Physics.Raycast(leftBoard2.transform.position, 
+            transform.TransformDirection(Vector3.left), out hit))
+        {
+            leftLeftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }
+
+        if (backBoard == null) return;
+        if (Physics.Raycast(backBoard2.transform.position, 
+            transform.TransformDirection(Vector3.back), out hit))
+        {
+            backBackBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }
+
+
+        /*if (Physics.Raycast(rightBoard.transform.position, 
+            rightBoard.transform.TransformDirection(Vector3.right), out hit))
+        {
+            rightRightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }
+        
+        if (Physics.Raycast(leftBoard.transform.position, 
+            leftBoard.transform.TransformDirection(Vector3.left), out hit))
+        {
+            leftLeftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }
+        
+        if (Physics.Raycast(backBoard.transform.position, 
+            backBoard.transform.TransformDirection(Vector3.back), out hit))
+        {
+            backBackBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }*/
+        
     }
 
     public Vector3 getBoardPiecePos()
