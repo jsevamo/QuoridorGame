@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardPiece: {fileID: 1108038604008966, guid: dfb2b176cc40cd548925d4d51799f5e3, type: 2}
   PlayPiece: {fileID: 1857718171287078, guid: a6e7c70e9cb2a3e4c80a0252d10c748e, type: 2}
+  BlockerPiece: {fileID: 1679587854780138, guid: 57680293f21964743981dde4da69d168,
+    type: 2}
   NumberOfPlayers: 2
   actualTurn: 0
   movablePiece: {fileID: 0}
@@ -325,8 +327,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1666909644}
-  m_LocalRotation: {x: 0.22367221, y: -0, z: -0, w: 0.9746645}
-  m_LocalPosition: {x: 4.86, y: 5.83, z: -5.81}
+  m_LocalRotation: {x: 0.2802219, y: 0.47002125, z: -0.16033044, w: 0.8214925}
+  m_LocalPosition: {x: -3.9172719, y: 6.5947404, z: -1.029562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1555780641}

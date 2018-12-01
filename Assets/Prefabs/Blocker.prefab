@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1108038604008966}
+  m_RootGameObject: {fileID: 1679587854780138}
   m_IsPrefabAsset: 1
---- !u!1 &1108038604008966
+--- !u!1 &1679587854780138
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4835833517496340}
-  - component: {fileID: 33794565726299928}
-  - component: {fileID: 23875487412958068}
-  - component: {fileID: 65378684943142348}
-  - component: {fileID: 114330410489727008}
-  m_Layer: 9
-  m_Name: Board_Segment
-  m_TagString: Board_Segment
+  - component: {fileID: 4118916412164344}
+  - component: {fileID: 33477879937252002}
+  - component: {fileID: 23683882008210818}
+  - component: {fileID: 65074977394580930}
+  - component: {fileID: 114839893164638112}
+  m_Layer: 10
+  m_Name: Blocker
+  m_TagString: Blocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4835833517496340
+--- !u!4 &4118916412164344
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108038604008966}
+  m_GameObject: {fileID: 1679587854780138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.061156, z: 1}
+  m_LocalPosition: {x: 0.59, y: 0.45, z: 0.721}
+  m_LocalScale: {x: 2.1, y: 1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23875487412958068
+--- !u!23 &23683882008210818
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108038604008966}
+  m_GameObject: {fileID: 1679587854780138}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 900b0f418053f4c0899c6a214540f0e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,49 +78,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33794565726299928
+--- !u!33 &33477879937252002
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108038604008966}
+  m_GameObject: {fileID: 1679587854780138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65378684943142348
+--- !u!65 &65074977394580930
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108038604008966}
+  m_GameObject: {fileID: 1679587854780138}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114330410489727008
+--- !u!114 &114839893164638112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108038604008966}
+  m_GameObject: {fileID: 1679587854780138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946a2a5d84e73e9448c402fd1638fe63, type: 3}
+  m_Script: {fileID: 11500000, guid: c8fe0eeafbb9e4d29820f080c47b9fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardCoordinate:
-    row: 0
-    column: 0
-    pos: {x: 0, y: 0, z: 0}
-  isHighlighted: 0
-  pieceCanBeMovedHere: 0
-  frontBoard: {fileID: 0}
-  rightBoard: {fileID: 0}
-  leftBoard: {fileID: 0}
-  backBoard: {fileID: 0}
-  frontFrontBoard: {fileID: 0}
-  rightRightBoard: {fileID: 0}
-  leftLeftBoard: {fileID: 0}
-  backBackBoard: {fileID: 0}
-  hasActivePlayerOnTop: 0
-  hasPlayerOnTop: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using Boo.Lang.Runtime.DynamicDispatching;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -11,12 +12,13 @@ public class QuoridorController : MonoBehaviour
 {
     public GameObject BoardPiece;
     public GameObject PlayPiece;
+    public GameObject BlockerPiece;
     public int NumberOfPlayers;
 
     int boardSize;
 
     //Placeholder to keep all board pieces parented in the inspector.
-    GameObject Board, Piece;
+    GameObject Board, Piece, Blocker;
 
     Vector3 side1Start, side2Start, side3Start, side4Start;
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
@@ -31,6 +33,10 @@ public class QuoridorController : MonoBehaviour
 
     private int numberOfTurns;
     private GameObject centerPiece;
+    
+    private bool createBlocker;
+    
+    
 
 
     // Use this for initialization
@@ -43,14 +49,18 @@ public class QuoridorController : MonoBehaviour
         ChangeTurn();
 
         Debug.Log("THE GAME HAS STARTED :D");
+
     }
 
     void CreateBoard()
     {
         Board = new GameObject();
+        Blocker = new GameObject();
         Board.name = "BoardContainer";
+        Blocker.name = "BlockerContainer";
 
         isplaying = true;
+        createBlocker = false;
         actualTurn = 0;
 
         board = new Board();
@@ -63,6 +73,8 @@ public class QuoridorController : MonoBehaviour
         float dX = 0;
         float dZ = 0;
         float offset = 0.2f;
+        
+       
 
         for (int i = 0; i < boardSize; i++)
         {
@@ -163,6 +175,7 @@ public class QuoridorController : MonoBehaviour
     void Update()
     {
         StartGame();
+        
     }
 
     void ChangeTurn()
@@ -217,6 +230,7 @@ public class QuoridorController : MonoBehaviour
             }
         }
     }
+
 
     void CheckIfWin()
     {
@@ -278,18 +292,17 @@ public class QuoridorController : MonoBehaviour
                 return;
             }
 
-            BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
-
-            
-
-            if (!_boardPiece.HasPlayerOnTop)
+            if (hit.transform.gameObject.tag == "Board_Segment")
             {
-                movablePiece.MakeAMove(_boardPiece, movablePiece.transform.forward);
+                BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
+                
+                if (!_boardPiece.HasPlayerOnTop)
+                {
+                    movablePiece.MakeAMove(_boardPiece, movablePiece.transform.forward);
+                }
+               
             }
-            else
-            {
-                //Debug.Log("MotherFcuker");
-            }
+       
         }
     }
 
@@ -336,12 +349,12 @@ public class QuoridorController : MonoBehaviour
             }
         }
         
-        
-
+       
+        int layerMask =  LayerMask.GetMask("BoardPieces");
 
         RaycastHit hit;
 
-        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit , Mathf.Infinity, layerMask))
 
         {
             BoardPiece _boardPiece = hit.transform.GetComponent<BoardPiece>();
