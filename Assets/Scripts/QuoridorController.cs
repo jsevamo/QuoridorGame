@@ -231,6 +231,11 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
+    public void addBlockerPiece()
+    {
+        GameObject blockerPiece= Instantiate(BlockerPiece, Vector3.zero, Quaternion.identity) as GameObject;
+        blockerPiece.transform.parent = Piece.gameObject.transform;
+    }
 
     void CheckIfWin()
     {
