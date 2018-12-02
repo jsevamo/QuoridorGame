@@ -33,8 +33,8 @@ public class QuoridorController : MonoBehaviour
 
     private int numberOfTurns;
     private GameObject centerPiece;
-    
-    private bool createBlocker;
+
+    [SerializeField] private Blocker actualBlocker;
     
     
 
@@ -60,8 +60,8 @@ public class QuoridorController : MonoBehaviour
         Blocker.name = "BlockerContainer";
 
         isplaying = true;
-        createBlocker = false;
         actualTurn = 0;
+        actualBlocker = null;
 
         board = new Board();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -218,11 +218,21 @@ public class QuoridorController : MonoBehaviour
     {
         if (isplaying)
         {
-            WaitForMove();
             CheckWhoIsCurrentlyPlaying();
-            HighlightBoardPiece();
             CheckWhereIsPlayer();
             CheckIfWin();
+
+            if (actualBlocker)
+            {
+                findSpotToPlaceBlock();
+                CheckIfBlockDeleted();
+            }
+            else
+            {
+                WaitForPlayerMove();
+                HighlightBoardPiece();
+            }
+            
 
             if (movablePiece.IsTurnDone)
             {
@@ -231,10 +241,31 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
+    void CheckIfBlockDeleted()
+    {
+        if (actualBlocker.ShouldBeDeleted)
+        {
+            Destroy(GameObject.FindWithTag("Blocker"));
+            actualBlocker = null;
+        }
+    }
+
     public void addBlockerPiece()
     {
+
+        
         GameObject blockerPiece= Instantiate(BlockerPiece, Vector3.zero, Quaternion.identity) as GameObject;
-        blockerPiece.transform.parent = Piece.gameObject.transform;
+        blockerPiece.transform.parent = Blocker.gameObject.transform;
+
+        actualBlocker = blockerPiece.GetComponent<Blocker>();
+
+        actualBlocker.IsBeingDragged = true;
+
+    }
+
+    public void findSpotToPlaceBlock()
+    {
+        //Debug.Log("jejejeje");
     }
 
     void CheckIfWin()
@@ -286,7 +317,7 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
-    void WaitForMove()
+    void WaitForPlayerMove()
     {
         if (Input.GetMouseButtonDown(0))
         {
