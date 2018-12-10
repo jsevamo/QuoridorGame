@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 1024035096}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   NumberOfPlayers: 2
   actualTurn: 0
   movablePiece: {fileID: 0}
+  actualBlocker: {fileID: 0}
 --- !u!1 &1024569941
 GameObject:
   m_ObjectHideFlags: 0

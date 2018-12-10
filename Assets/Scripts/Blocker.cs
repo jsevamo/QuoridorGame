@@ -35,10 +35,14 @@ public class Blocker : MonoBehaviour
 		}
 		else
 		{
-			DestroyBlocker();
+			if (shouldBeDeleted)
+			{
+				DestroyBlocker();
+			}
+
 		}
 			
-		//TODO: CHANGE THIS KEY TO ESCAPE
+		//TODO: CHANGE THIS KEY TO ESCAPE TO DELETE BLOCKER
 		if (Input.GetKeyDown(KeyCode.P))
 		{
 			isBeingDragged = false;
@@ -60,8 +64,10 @@ public class Blocker : MonoBehaviour
 		Destroy(this);
 	}
 
-	public void PlaceBlockerOnBoard()
+	public void PlaceBlockerOnBoard(GameObject placeHere)
 	{
-		
+		isBeingDragged = false;
+
+		transform.position = placeHere.transform.position + new Vector3(0,transform.localScale.y/2, 0);
 	}
 }

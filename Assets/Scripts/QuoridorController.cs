@@ -226,6 +226,7 @@ public class QuoridorController : MonoBehaviour
             {
                 findSpotToPlaceBlock();
                 CheckIfBlockDeleted();
+                Debug.Log("aha");
             }
             else
             {
@@ -243,11 +244,15 @@ public class QuoridorController : MonoBehaviour
 
     void CheckIfBlockDeleted()
     {
-        if (actualBlocker.ShouldBeDeleted)
+        if (actualBlocker)
         {
-            Destroy(GameObject.FindWithTag("Blocker"));
-            actualBlocker = null;
+            if (actualBlocker.ShouldBeDeleted)
+            {
+                Destroy(GameObject.FindWithTag("Blocker"));
+                actualBlocker = null;
+            }
         }
+        
     }
 
     public void addBlockerPiece()
@@ -265,7 +270,24 @@ public class QuoridorController : MonoBehaviour
 
     public void findSpotToPlaceBlock()
     {
-        //Debug.Log("jejejeje");
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+
+            if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                return;
+            }
+
+            if (hit.transform.gameObject.tag == "PlaceBlocker")
+            {
+
+                actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);
+                movablePiece.IsTurnDone = true;
+                actualBlocker = null;
+            }
+       
+        }
     }
 
     void CheckIfWin()
