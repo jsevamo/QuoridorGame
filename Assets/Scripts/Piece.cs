@@ -4,6 +4,7 @@ using System.Xml.Schema;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 
+
 public class Piece : MonoBehaviour
 {
 	[SerializeField] private Color colorOfPiece;
@@ -16,6 +17,7 @@ public class Piece : MonoBehaviour
 	[SerializeField] private Vector3 forwardVector;
 	private int numPlaysForward;
 	[SerializeField] private int numOfBlockPieces;
+
 
 	public int NumOfBlockPieces
 	{

@@ -7,6 +7,7 @@ using Boo.Lang.Runtime.DynamicDispatching;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityTemplateProjects;
+using UnityEngine.UI;
 
 public class QuoridorController : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class QuoridorController : MonoBehaviour
 
     [SerializeField] private Blocker actualBlocker;
     
+    public Text BlockerCountText;
+    
     
 
 
@@ -49,7 +52,14 @@ public class QuoridorController : MonoBehaviour
         ChangeTurn();
 
         Debug.Log("THE GAME HAS STARTED :D");
+        
+       
 
+    }
+
+    void setBlockerCount()
+    {
+        BlockerCountText.text = "x " + movablePiece.NumOfBlockPieces;
     }
 
     void CreateBoard()
@@ -128,6 +138,9 @@ public class QuoridorController : MonoBehaviour
         sidesToPlacePiece.Add(side4Start);
         sidesToPlacePiece.Add(side2Start);
         sidesToPlacePiece.Add(side3Start);
+
+
+        
     }
 
     void SetPlayPieces(int _numOfPlayers)
@@ -221,6 +234,7 @@ public class QuoridorController : MonoBehaviour
             CheckWhoIsCurrentlyPlaying();
             CheckWhereIsPlayer();
             CheckIfWin();
+            setBlockerCount();
 
             if (actualBlocker)
             {
