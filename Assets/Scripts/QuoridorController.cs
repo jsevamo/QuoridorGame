@@ -226,7 +226,6 @@ public class QuoridorController : MonoBehaviour
             {
                 findSpotToPlaceBlock();
                 CheckIfBlockDeleted();
-                Debug.Log("aha");
             }
             else
             {
@@ -258,37 +257,52 @@ public class QuoridorController : MonoBehaviour
     public void addBlockerPiece()
     {
 
+        if (movablePiece.NumOfBlockPieces > 0)
+        {
+            GameObject blockerPiece= Instantiate(BlockerPiece, Vector3.zero, Quaternion.identity) as GameObject;
+            blockerPiece.transform.parent = Blocker.gameObject.transform;
+
+            actualBlocker = blockerPiece.GetComponent<Blocker>();
+
+            actualBlocker.IsBeingDragged = true;
+        }
+        else
+        {
+            Debug.Log("Cannot add");
+        }
         
-        GameObject blockerPiece= Instantiate(BlockerPiece, Vector3.zero, Quaternion.identity) as GameObject;
-        blockerPiece.transform.parent = Blocker.gameObject.transform;
-
-        actualBlocker = blockerPiece.GetComponent<Blocker>();
-
-        actualBlocker.IsBeingDragged = true;
 
     }
 
     public void findSpotToPlaceBlock()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (movablePiece.NumOfBlockPieces > 0)
         {
-            RaycastHit hit;
-
-            if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Input.GetMouseButtonDown(0))
             {
-                return;
-            }
+                RaycastHit hit;
 
-            if (hit.transform.gameObject.tag == "PlaceBlocker")
-            {
+                if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    return;
+                }
 
-                actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);
-                movablePiece.IsTurnDone = true;
-                actualBlocker = null;
+                if (hit.transform.gameObject.tag == "PlaceBlocker")
+                {
+
+                    actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);
+                    movablePiece.IsTurnDone = true;
+                    actualBlocker = null;
+                    movablePiece.NumOfBlockPieces--;
+                }
+
             }
-       
         }
+
     }
+
+
 
     void CheckIfWin()
     {
