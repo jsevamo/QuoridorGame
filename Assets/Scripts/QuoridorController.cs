@@ -14,12 +14,13 @@ public class QuoridorController : MonoBehaviour
     public GameObject BoardPiece;
     public GameObject PlayPiece;
     public GameObject BlockerPiece;
+    public GameObject PlaceBlockerPiece;
     public int NumberOfPlayers;
 
     int boardSize;
 
     //Placeholder to keep all board pieces parented in the inspector.
-    GameObject Board, Piece, Blocker;
+    private GameObject Board, Piece, Blocker, BlockerPlace;
 
     Vector3 side1Start, side2Start, side3Start, side4Start;
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
@@ -66,8 +67,10 @@ public class QuoridorController : MonoBehaviour
     {
         Board = new GameObject();
         Blocker = new GameObject();
+        BlockerPlace = new GameObject();
         Board.name = "BoardContainer";
         Blocker.name = "BlockerContainer";
+        BlockerPlace.name = "BlockerPlacementPiecesContainer";
 
         isplaying = true;
         actualTurn = 0;
@@ -139,7 +142,7 @@ public class QuoridorController : MonoBehaviour
         sidesToPlacePiece.Add(side2Start);
         sidesToPlacePiece.Add(side3Start);
 
-
+        
         
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoardPiece : MonoBehaviour
 {
     [SerializeField] BoardCoordinate boardCoordinate;
+    public GameObject PlaceBlockerPiece;
 
     int column;
     int row;
@@ -133,9 +134,23 @@ public class BoardPiece : MonoBehaviour
 
 
         FindNeighbors();
+        setBlockerPlacePiece();
 
 
         //Debug.Log(boardCoordinate.getPos());
+    }
+
+    public void setBlockerPlacePiece()
+    {
+
+        if (rightBoard && frontBoard)
+        {
+            GameObject boardPlacePiece = Instantiate(PlaceBlockerPiece, transform.position + 
+            new Vector3(transform.localScale.x/2, 0, transform.localScale.z/2), Quaternion.identity)
+                as GameObject;
+        }
+            
+
     }
 
     // Update is called once per frame
