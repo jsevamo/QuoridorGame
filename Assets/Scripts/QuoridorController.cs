@@ -9,9 +9,6 @@ using UnityEngine.Analytics;
 using UnityTemplateProjects;
 using UnityEngine.UI;
 
-//TODO: MAKE BLOCKER PLACER CHANGE COLOR WHEN HOVERED WITH CURSOR
-//TODO: MAKE BLOCKER PIECE TRANSPARENT AND MAYBE MOVE UP A BIT FOR FURTHER COOLNESS.
-
 public class QuoridorController : MonoBehaviour
 {
     public GameObject BoardPiece;

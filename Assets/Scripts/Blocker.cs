@@ -69,7 +69,5 @@ public class Blocker : MonoBehaviour
 		isBeingDragged = false;
 
 		transform.position = placeHere.transform.position + new Vector3(0,transform.localScale.y/2, 0);
-
-		GetComponent<BoxCollider>().enabled = true;
 	}
 }
