@@ -148,6 +148,10 @@ public class BoardPiece : MonoBehaviour
             GameObject boardPlacePiece = Instantiate(PlaceBlockerPiece, transform.position + 
             new Vector3(transform.localScale.x/2, 0, transform.localScale.z/2), Quaternion.identity)
                 as GameObject;
+
+            QuoridorController QC = GameObject.FindWithTag("GameController").GetComponent<QuoridorController>();
+
+            boardPlacePiece.transform.parent = QC.BlockerPlace1.gameObject.transform;
         }
             
 

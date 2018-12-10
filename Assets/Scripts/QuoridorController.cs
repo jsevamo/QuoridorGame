@@ -22,6 +22,12 @@ public class QuoridorController : MonoBehaviour
     //Placeholder to keep all board pieces parented in the inspector.
     private GameObject Board, Piece, Blocker, BlockerPlace;
 
+    public GameObject BlockerPlace1
+    {
+        get { return BlockerPlace; }
+        set { BlockerPlace = value; }
+    }
+
     Vector3 side1Start, side2Start, side3Start, side4Start;
     List<Vector3> sidesToPlacePiece = new List<Vector3>();
     List<Piece> piecesOnBoard = new List<Piece>();
