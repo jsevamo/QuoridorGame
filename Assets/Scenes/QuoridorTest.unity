@@ -298,6 +298,7 @@ MonoBehaviour:
   actualTurn: 0
   movablePiece: {fileID: 0}
   actualBlocker: {fileID: 0}
+  BlockerCountText: {fileID: 227417072}
 --- !u!1 &1024569941
 GameObject:
   m_ObjectHideFlags: 0
