@@ -18,6 +18,11 @@ public class PlaceBlocker : MonoBehaviour
     [SerializeField] private PlaceBlocker leftBlocker;
     [SerializeField] private PlaceBlocker backBlocker;
 
+	[SerializeField] private BoardPiece BP1;
+	[SerializeField] private BoardPiece BP2;
+	[SerializeField] private BoardPiece BP3;
+	[SerializeField] private BoardPiece BP4;
+
 	public bool HasBlocker
 	{
 		get { return hasBlocker; }
@@ -151,4 +156,11 @@ public class PlaceBlocker : MonoBehaviour
 		GetComponent<Renderer>().enabled = a;
 		GetComponent<SphereCollider>().enabled = a;
 	}
+	
+	void OnTriggerEnter(Collider col)
+	{
+		
+	}
+	
+	
 }

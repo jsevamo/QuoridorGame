@@ -86,6 +86,14 @@ public class BoardPiece : MonoBehaviour
     [SerializeField] private bool hasActivePlayerOnTop;
     [SerializeField] private bool hasPlayerOnTop;
 
+    private bool isBlocked;
+
+    public bool IsBlocked
+    {
+        get { return isBlocked; }
+        set { isBlocked = value; }
+    }
+
     public bool HasPlayerOnTop
     {
         get { return hasPlayerOnTop; }
