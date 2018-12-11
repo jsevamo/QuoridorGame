@@ -6,6 +6,17 @@ public class Blocker : MonoBehaviour
 {
 	[SerializeField] private bool isBeingDragged;
 	private bool shouldBeDeleted;
+	
+	
+	[SerializeField]
+	public enum OrientationEmun
+	{
+		Horizontal,
+		Vertical
+		
+	}
+	
+	[SerializeField] private OrientationEmun orientation;
 
 	public bool ShouldBeDeleted
 	{
@@ -24,6 +35,7 @@ public class Blocker : MonoBehaviour
 	{
 		isBeingDragged = false;
 		shouldBeDeleted = false;
+		orientation = OrientationEmun.Horizontal;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +44,7 @@ public class Blocker : MonoBehaviour
 		if(isBeingDragged)
 		{
 			AttachBlockerToCursor();
+			setOrientation();
 		}
 		else
 		{
@@ -49,6 +62,31 @@ public class Blocker : MonoBehaviour
 			shouldBeDeleted = true;
 		}
 		
+	}
+
+	public void setOrientation()
+	{
+		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			if (orientation == OrientationEmun.Horizontal)
+			{
+				orientation = OrientationEmun.Vertical;
+			}
+			else
+			{
+				orientation = OrientationEmun.Horizontal;
+			}
+		}
+		
+		
+		if (orientation == OrientationEmun.Horizontal)
+		{
+			transform.localRotation = Quaternion.Euler(0,0,0);
+		}
+		else if (orientation == OrientationEmun.Vertical)
+		{
+			transform.localRotation = Quaternion.Euler(0,90,0);
+		}
 	}
 
 	public void AttachBlockerToCursor()

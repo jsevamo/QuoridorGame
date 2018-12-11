@@ -249,11 +249,13 @@ public class QuoridorController : MonoBehaviour
             {
                 findSpotToPlaceBlock();
                 CheckIfBlockDeleted();
+                BlockerPlace.SetActive(true);
             }
             else
             {
                 WaitForPlayerMove();
                 HighlightBoardPiece();
+                BlockerPlace.SetActive(false);
             }
             
 

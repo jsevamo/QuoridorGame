@@ -137,7 +137,6 @@ public class BoardPiece : MonoBehaviour
         setBlockerPlacePiece();
 
 
-        //Debug.Log(boardCoordinate.getPos());
     }
 
     public void setBlockerPlacePiece()
