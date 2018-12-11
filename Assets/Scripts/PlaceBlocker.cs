@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 public class PlaceBlocker : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlaceBlocker : MonoBehaviour
 	[SerializeField] private BoardPiece BP3;
 	[SerializeField] private BoardPiece BP4;
 
+	private bool hasCheckedBoardPieces;
+
 	public bool HasBlocker
 	{
 		get { return hasBlocker; }
@@ -36,6 +39,11 @@ public class PlaceBlocker : MonoBehaviour
 		blocker = null;
 		QC = GameObject.FindWithTag("GameController").GetComponent<QuoridorController>();
 		FindNeighbors();
+		BP1 = null;
+		BP2 = null;
+		BP3 = null;
+		BP4 = null;
+		hasCheckedBoardPieces = false;
 	}
 	
 	void FindNeighbors()
@@ -148,7 +156,12 @@ public class PlaceBlocker : MonoBehaviour
 				
 			}
 	    }
-	
+
+		/*if (hasCheckedBoardPieces)
+		{
+			BP2 = BP1.RightBoard;
+		}*/
+		
 	}
 	
 	void isActive(bool a)
@@ -159,7 +172,16 @@ public class PlaceBlocker : MonoBehaviour
 	
 	void OnTriggerEnter(Collider col)
 	{
+		if(col.gameObject.tag == "Board_Segment")
+		{
+			BP1 = col.gameObject.GetComponent<BoardPiece>();
+			BP2 = col.gameObject.GetComponent<BoardPiece>().RightBoard;
+			BP3 = col.gameObject.GetComponent<BoardPiece>().DiagonalBoard;
+			BP4 = col.gameObject.GetComponent<BoardPiece>().BackBoard;
+			hasCheckedBoardPieces = true;
+		}
 		
+
 	}
 	
 	

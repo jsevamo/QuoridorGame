@@ -50,6 +50,13 @@ public class BoardPiece : MonoBehaviour
     [SerializeField] private BoardPiece rightBoard;
     [SerializeField] private BoardPiece leftBoard;
     [SerializeField] private BoardPiece backBoard;
+    [SerializeField] private BoardPiece diagonalBoard;
+
+    public BoardPiece DiagonalBoard
+    {
+        get { return diagonalBoard; }
+        set { diagonalBoard = value; }
+    }
 
 
     [SerializeField] private BoardPiece frontFrontBoard;
@@ -224,6 +231,20 @@ public class BoardPiece : MonoBehaviour
         {
             backBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
             backBoard2 = hit.transform.gameObject;
+        }
+        
+        /*if (Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(1,0,-1)), out hit))
+        {
+            diagonalBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }*/
+        
+        if (rightBoard != null)
+        {
+            if (Physics.Raycast(rightBoard2.transform.position, 
+                transform.TransformDirection(Vector3.back), out hit))
+            {
+                diagonalBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            }
         }
         
         //-----------------------------------------------------------
