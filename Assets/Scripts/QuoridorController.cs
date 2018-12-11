@@ -468,6 +468,10 @@ public class QuoridorController : MonoBehaviour
                         {
                             _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
                         }
+                        else
+                        {
+                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                        }
                     }
                     else if(_boardPiece.HasSurroundingBlocker)
                     {
@@ -481,7 +485,15 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                            
+                            if (_boardPiece.FrontBoard.HasPlayerOnTop)
+                            {
+                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                            }
+                            else
+                            {
+                                _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                         
                     }
@@ -491,11 +503,19 @@ public class QuoridorController : MonoBehaviour
                 
                 
 
-                if (_boardPiece.RightBoard != null && !_boardPiece.RightBoard.HasPlayerOnTop)
+                if (_boardPiece.RightBoard != null)
                 {
                     if (!_boardPiece.HasSurroundingBlocker)
                     {
-                        _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                        if (!_boardPiece.RightBoard.HasPlayerOnTop)
+                        {
+                            _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                        }
+                        else
+                        {
+                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                        }
+                        
                     }
                     else
                     {
@@ -515,11 +535,19 @@ public class QuoridorController : MonoBehaviour
                     
                 }
 
-                if (_boardPiece.LeftBoard != null && !_boardPiece.LeftBoard.HasPlayerOnTop)
+                if (_boardPiece.LeftBoard != null)
                 {
                     if (!_boardPiece.HasSurroundingBlocker)
                     {
-                        _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                        if (!_boardPiece.LeftBoard.HasPlayerOnTop)
+                        {
+                            _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                        }
+                        else
+                        {
+                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                        }
+                       
                     }
                     else
                     {
@@ -539,12 +567,20 @@ public class QuoridorController : MonoBehaviour
                     
                 }
 
-                if (_boardPiece.BackBoard != null && !_boardPiece.BackBoard.HasPlayerOnTop)
+                if (_boardPiece.BackBoard != null)
                 {
 
                     if (!_boardPiece.HasSurroundingBlocker)
                     {
-                        _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                        if (!_boardPiece.BackBoard.HasPlayerOnTop)
+                        {
+                            _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                        }
+                        else
+                        {
+                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                        }
+                        
                     }
                     else
                     {
