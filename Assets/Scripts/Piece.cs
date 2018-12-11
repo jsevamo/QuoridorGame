@@ -11,7 +11,7 @@ public class Piece : MonoBehaviour
 
 	[SerializeField] private int orderInTurn;
 
-	private bool isTurnDone;
+	[SerializeField] private bool isTurnDone;
 	[SerializeField] private bool isCurrentlyPlaying;
 	[SerializeField] private bool hasWon;
 	[SerializeField] private Vector3 forwardVector;
@@ -111,7 +111,10 @@ public class Piece : MonoBehaviour
 
 		if (transform.position == _selectedBoardPiece.getPos() + new Vector3(0, transform.localScale.y / 2, 0))
 		{
-			isTurnDone = true;
+			if (NumPlaysForward != 8)
+			{
+				isTurnDone = true;
+			}			
 		}
 
 		//-----------------------------------------------------------

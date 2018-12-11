@@ -200,22 +200,21 @@ public class QuoridorController : MonoBehaviour
         
     }
 
-    void ChangeTurn()
+    private void ChangeTurn()
     {
+        
         if (numberOfTurns > 0)
         {
             movablePiece.IsCurrentlyPlaying = false;
             movablePiece.CurrentBoardPiece = null;
         }
 
-        if (actualTurn > NumberOfPlayers - 1)
-        {
-            actualTurn = 0;
-        }
+        if (actualTurn > NumberOfPlayers - 1) actualTurn = 0;
+
 
         actualTurn++;
 
-        for (int i = 0; i < NumberOfPlayers; i++)
+        for (var i = 0; i < NumberOfPlayers; i++)
         {
             if (piecesOnBoard[i].getOrderInTurn() == actualTurn)
             {
@@ -223,7 +222,11 @@ public class QuoridorController : MonoBehaviour
                 movablePiece = piecesOnBoard[i];
             }
 
+           
             piecesOnBoard[i].IsTurnDone = false;
+
+            
+            
         }
 
         foreach (var _pieceOfBoard in board.BoardPieces)
@@ -240,10 +243,10 @@ public class QuoridorController : MonoBehaviour
     {
         if (isplaying)
         {
+            CheckIfWin();
             CheckWhoIsCurrentlyPlaying();
             CheckWhereIsPlayer();
-            setPlayerTurnText();
-            CheckIfWin();
+            setPlayerTurnText(movablePiece.getOrderInTurn());         
             setBlockerCount();
             
 
@@ -268,9 +271,17 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
-    void setPlayerTurnText()
+    void setPlayerTurnText(int turn)
     {
-        PlayerTurnText.text = "Player's " + movablePiece.getOrderInTurn() + " Turn";
+        if (isplaying)
+        {
+            PlayerTurnText.text = "Player's " + turn + " Turn"; 
+        }
+        else
+        {
+            PlayerTurnText.text = "Player " + turn + " Wins!"; 
+        }
+        
     }
 
     void CheckIfBlockDeleted()
@@ -342,12 +353,16 @@ public class QuoridorController : MonoBehaviour
         {
             if (_piece.NumPlaysForward == boardSize - 1)
             {
+                
+                
                 isplaying = false;
-
-                Debug.Log("Player " + movablePiece.getOrderInTurn() + " has won the game!");
-                PlayerTurnText.text = "Player " + movablePiece.getOrderInTurn() + " has won the game!";
+                Debug.Log("Player " + _piece.getOrderInTurn() + " has won the game!");
+                setPlayerTurnText(_piece.getOrderInTurn());
+                
             }
         }
+        
+        
     }
 
 
