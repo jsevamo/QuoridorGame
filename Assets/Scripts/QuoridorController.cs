@@ -45,7 +45,7 @@ public class QuoridorController : MonoBehaviour
     [SerializeField] private Blocker actualBlocker;
     
     public Text BlockerCountText;
-    
+    public Text PlayerTurnText;
     
 
 
@@ -242,8 +242,10 @@ public class QuoridorController : MonoBehaviour
         {
             CheckWhoIsCurrentlyPlaying();
             CheckWhereIsPlayer();
+            setPlayerTurnText();
             CheckIfWin();
             setBlockerCount();
+            
 
             if (actualBlocker)
             {
@@ -264,6 +266,11 @@ public class QuoridorController : MonoBehaviour
                 ChangeTurn();
             }
         }
+    }
+
+    void setPlayerTurnText()
+    {
+        PlayerTurnText.text = "Player's " + movablePiece.getOrderInTurn() + " Turn";
     }
 
     void CheckIfBlockDeleted()
@@ -338,6 +345,7 @@ public class QuoridorController : MonoBehaviour
                 isplaying = false;
 
                 Debug.Log("Player " + movablePiece.getOrderInTurn() + " has won the game!");
+                PlayerTurnText.text = "Player " + movablePiece.getOrderInTurn() + " has won the game!";
             }
         }
     }

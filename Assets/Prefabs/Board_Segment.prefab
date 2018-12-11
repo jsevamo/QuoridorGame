@@ -112,6 +112,8 @@ MonoBehaviour:
     row: 0
     column: 0
     pos: {x: 0, y: 0, z: 0}
+  PlaceBlockerPiece: {fileID: 1416366640051312, guid: ecd1c5cdc4e4a4fc899ab785943b270e,
+    type: 2}
   isHighlighted: 0
   pieceCanBeMovedHere: 0
   frontBoard: {fileID: 0}
