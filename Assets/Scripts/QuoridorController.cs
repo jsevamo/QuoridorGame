@@ -239,6 +239,7 @@ public class QuoridorController : MonoBehaviour
 
            
             piecesOnBoard[i].IsTurnDone = false;
+            
 
             
             
@@ -249,6 +250,7 @@ public class QuoridorController : MonoBehaviour
             _pieceOfBoard.HasActivePlayerOnTop = false;
             _pieceOfBoard.HasPlayerOnTop = false;
             _pieceOfBoard.PieceCanBeMovedHere = false;
+            _pieceOfBoard.PlayerOnTop = null;
         }
 
         numberOfTurns++;
@@ -471,6 +473,8 @@ public class QuoridorController : MonoBehaviour
                         else
                         {
                             _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                            
+                            
                         }
                     }
                     else if(_boardPiece.HasSurroundingBlocker)

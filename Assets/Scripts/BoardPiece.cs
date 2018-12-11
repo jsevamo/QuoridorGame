@@ -92,6 +92,13 @@ public class BoardPiece : MonoBehaviour
 
     [SerializeField] private bool hasActivePlayerOnTop;
     [SerializeField] private bool hasPlayerOnTop;
+    [SerializeField] private Piece playerOnTop;
+
+    public Piece PlayerOnTop
+    {
+        get { return playerOnTop; }
+        set { playerOnTop = value; }
+    }
 
     [SerializeField] private bool hasSurroundingBlocker;
 
@@ -147,6 +154,7 @@ public class BoardPiece : MonoBehaviour
         hasPlayerOnTop = false;
         pieceCanBeMovedHere = false;
         hasSurroundingBlocker = false;
+        playerOnTop = null;
 
 
         FindNeighbors();
@@ -196,6 +204,7 @@ public class BoardPiece : MonoBehaviour
             Mathf.Approximately(transform.position.z, _piece.gameObject.transform.position.z))
         {
             hasPlayerOnTop = true;
+            playerOnTop = _piece;
         }
     }
     
