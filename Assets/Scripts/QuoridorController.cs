@@ -529,7 +529,14 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                            if (_boardPiece.RightBoard.HasPlayerOnTop)
+                            {
+                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                            }
+                            else
+                            {
+                                _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                     }
                     
@@ -561,7 +568,14 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                            if (_boardPiece.LeftBoard.HasPlayerOnTop)
+                            {
+                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                            }
+                            else
+                            {
+                                _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                     }
                     
@@ -594,7 +608,14 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                            if (_boardPiece.BackBoard.HasPlayerOnTop)
+                            {
+                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                            }
+                            else
+                            {
+                                _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                     }
                     
