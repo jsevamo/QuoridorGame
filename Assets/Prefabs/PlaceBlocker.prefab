@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33558847251975206}
   - component: {fileID: 23157939732265194}
   - component: {fileID: 135747129860092342}
+  - component: {fileID: 114433479182019486}
   m_Layer: 0
   m_Name: PlaceBlocker
   m_TagString: PlaceBlocker
@@ -84,6 +85,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416366640051312}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114433479182019486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416366640051312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1ae08e5c6e24f12bc28230bb31ccfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasBlocker: 0
+  blocker: {fileID: 0}
+  frontBlocker: {fileID: 0}
+  rightBlocker: {fileID: 0}
+  leftBlocker: {fileID: 0}
+  backBlocker: {fileID: 0}
 --- !u!135 &135747129860092342
 SphereCollider:
   m_ObjectHideFlags: 1

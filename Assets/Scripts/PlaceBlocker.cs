@@ -80,6 +80,9 @@ public class PlaceBlocker : MonoBehaviour
 				{
 					if(rightBlocker)
 						rightBlocker.isActive(false);
+					
+					if(leftBlocker)
+						leftBlocker.isActive(false);
 				}
 				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical)
 				{
@@ -88,12 +91,7 @@ public class PlaceBlocker : MonoBehaviour
 				}
 			}
 	    }
-
-		
-
-		
-
-		
+	
 	}
 	
 	void isActive(bool a)
