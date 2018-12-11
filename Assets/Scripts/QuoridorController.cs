@@ -246,7 +246,7 @@ public class QuoridorController : MonoBehaviour
             CheckIfWin();
             CheckWhoIsCurrentlyPlaying();
             CheckWhereIsPlayer();
-            setPlayerTurnText(movablePiece.getOrderInTurn());         
+            setPlayerTurnText();         
             setBlockerCount();
             
 
@@ -271,15 +271,23 @@ public class QuoridorController : MonoBehaviour
         }
     }
 
-    void setPlayerTurnText(int turn)
+    void setPlayerTurnText()
     {
         if (isplaying)
         {
-            PlayerTurnText.text = "Player's " + turn + " Turn"; 
+            PlayerTurnText.text = "Player's " + movablePiece.getOrderInTurn() + " Turn"; 
         }
         else
         {
-            PlayerTurnText.text = "Player " + turn + " Wins!"; 
+            foreach (var _piece in piecesOnBoard)
+            {
+                if (_piece.NumPlaysForward == boardSize - 1)
+                {
+
+                    PlayerTurnText.text = "Player " + _piece.getOrderInTurn() + " wins!"; 
+                
+                }
+            }
         }
         
     }
@@ -353,12 +361,8 @@ public class QuoridorController : MonoBehaviour
         {
             if (_piece.NumPlaysForward == boardSize - 1)
             {
-                
-                
                 isplaying = false;
-                Debug.Log("Player " + _piece.getOrderInTurn() + " has won the game!");
-                setPlayerTurnText(_piece.getOrderInTurn());
-                
+                Debug.Log("Player " + _piece.getOrderInTurn() + " has won the game!");   
             }
         }
         
