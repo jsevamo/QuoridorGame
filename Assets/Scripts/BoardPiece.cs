@@ -93,12 +93,12 @@ public class BoardPiece : MonoBehaviour
     [SerializeField] private bool hasActivePlayerOnTop;
     [SerializeField] private bool hasPlayerOnTop;
 
-    private bool isBlocked;
+    [SerializeField] private bool hasSurroundingBlocker;
 
-    public bool IsBlocked
+    public bool HasSurroundingBlocker
     {
-        get { return isBlocked; }
-        set { isBlocked = value; }
+        get { return hasSurroundingBlocker; }
+        set { hasSurroundingBlocker = value; }
     }
 
     public bool HasPlayerOnTop
@@ -146,6 +146,7 @@ public class BoardPiece : MonoBehaviour
         hasActivePlayerOnTop = false;
         hasPlayerOnTop = false;
         pieceCanBeMovedHere = false;
+        hasSurroundingBlocker = false;
 
 
         FindNeighbors();

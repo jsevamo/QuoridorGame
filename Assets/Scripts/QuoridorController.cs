@@ -364,7 +364,12 @@ public class QuoridorController : MonoBehaviour
                     movablePiece.NumOfBlockPieces--;
                     
                     blockerPlace.HasBlocker = true;
-                    
+
+                    blockerPlace.Bp1.HasSurroundingBlocker = true;
+                    blockerPlace.Bp2.HasSurroundingBlocker = true;
+                    blockerPlace.Bp3.HasSurroundingBlocker = true;
+                    blockerPlace.Bp4.HasSurroundingBlocker = true;
+
                 }
 
             }
@@ -457,11 +462,30 @@ public class QuoridorController : MonoBehaviour
             {
                 if (_boardPiece.FrontBoard != null)
                 {
-                    if (!_boardPiece.FrontBoard.HasPlayerOnTop)
+                    if (!_boardPiece.HasSurroundingBlocker)
                     {
-                        _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                        if (!_boardPiece.FrontBoard.HasPlayerOnTop)
+                        {
+                            _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                        }
                     }
-                    
+                    else if(_boardPiece.HasSurroundingBlocker)
+                    {
+                        RaycastHit hit2;
+                        if (Physics.Raycast(movablePiece.transform.position, 
+                            transform.TransformDirection(Vector3.forward), 
+                            out hit2,1))
+                        {
+
+                            _boardPiece.FrontBoard.PieceCanBeMovedHere = false;
+                        }
+                        else
+                        {
+                            _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                        }
+                        
+                    }
+   
                 }
 
                 
@@ -469,25 +493,76 @@ public class QuoridorController : MonoBehaviour
 
                 if (_boardPiece.RightBoard != null && !_boardPiece.RightBoard.HasPlayerOnTop)
                 {
-                    _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                    if (!_boardPiece.HasSurroundingBlocker)
+                    {
+                        _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                    }
+                    else
+                    {
+                        RaycastHit hit2;
+                        if (Physics.Raycast(movablePiece.transform.position, 
+                            transform.TransformDirection(Vector3.right), 
+                            out hit2,1))
+                        {
+
+                            _boardPiece.RightBoard.PieceCanBeMovedHere = false;
+                        }
+                        else
+                        {
+                            _boardPiece.RightBoard.PieceCanBeMovedHere = true;
+                        }
+                    }
+                    
                 }
 
                 if (_boardPiece.LeftBoard != null && !_boardPiece.LeftBoard.HasPlayerOnTop)
                 {
-                    _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                    if (!_boardPiece.HasSurroundingBlocker)
+                    {
+                        _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                    }
+                    else
+                    {
+                        RaycastHit hit2;
+                        if (Physics.Raycast(movablePiece.transform.position, 
+                            transform.TransformDirection(Vector3.left), 
+                            out hit2,1))
+                        {
+
+                            _boardPiece.LeftBoard.PieceCanBeMovedHere = false;
+                        }
+                        else
+                        {
+                            _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
+                        }
+                    }
+                    
                 }
 
-                if (_boardPiece.BackBoard != null)
+                if (_boardPiece.BackBoard != null && !_boardPiece.BackBoard.HasPlayerOnTop)
                 {
-                    if (!_boardPiece.BackBoard.HasPlayerOnTop)
+
+                    if (!_boardPiece.HasSurroundingBlocker)
                     {
                         _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                     }
                     else
                     {
-                        _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                        RaycastHit hit2;
+                        if (Physics.Raycast(movablePiece.transform.position, 
+                            transform.TransformDirection(Vector3.back), 
+                            out hit2,1))
+                        {
+
+                            _boardPiece.BackBoard.PieceCanBeMovedHere = false;
+                        }
+                        else
+                        {
+                            _boardPiece.BackBoard.PieceCanBeMovedHere = true;
+                        }
                     }
                     
+         
                 }
             }
         }

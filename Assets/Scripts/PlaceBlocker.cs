@@ -20,6 +20,31 @@ public class PlaceBlocker : MonoBehaviour
     [SerializeField] private PlaceBlocker backBlocker;
 
 	[SerializeField] private BoardPiece BP1;
+
+	public BoardPiece Bp1
+	{
+		get { return BP1; }
+		set { BP1 = value; }
+	}
+
+	public BoardPiece Bp2
+	{
+		get { return BP2; }
+		set { BP2 = value; }
+	}
+
+	public BoardPiece Bp3
+	{
+		get { return BP3; }
+		set { BP3 = value; }
+	}
+
+	public BoardPiece Bp4
+	{
+		get { return BP4; }
+		set { BP4 = value; }
+	}
+
 	[SerializeField] private BoardPiece BP2;
 	[SerializeField] private BoardPiece BP3;
 	[SerializeField] private BoardPiece BP4;
