@@ -5,8 +5,15 @@ using UnityEngine;
 public class PlaceBlocker : MonoBehaviour
 {
 	[SerializeField] private bool hasBlocker;
+	[SerializeField] private Blocker blocker;
+	private QuoridorController QC;
 
-    [SerializeField] private PlaceBlocker frontBlocker;
+	public void setBlocker(Blocker B)
+	{
+		blocker = B;
+	}
+
+	[SerializeField] private PlaceBlocker frontBlocker;
     [SerializeField] private PlaceBlocker rightBlocker;
     [SerializeField] private PlaceBlocker leftBlocker;
     [SerializeField] private PlaceBlocker backBlocker;
@@ -21,6 +28,8 @@ public class PlaceBlocker : MonoBehaviour
 	void Start ()
 	{
 		hasBlocker = false;
+		blocker = null;
+		QC = GameObject.FindWithTag("GameController").GetComponent<QuoridorController>();
 		FindNeighbors();
 	}
 	
@@ -60,5 +69,36 @@ public class PlaceBlocker : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 		
+		if (hasBlocker)
+		{
+			isActive(false);
+
+			
+			if (QC.ActualBlocker)
+			{
+				if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal)
+				{
+					if(rightBlocker)
+						rightBlocker.isActive(false);
+				}
+				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if(rightBlocker)
+						rightBlocker.isActive(true);
+				}
+			}
+	    }
+
+		
+
+		
+
+		
+	}
+	
+	void isActive(bool a)
+	{
+		GetComponent<Renderer>().enabled = a;
+		GetComponent<SphereCollider>().enabled = a;
 	}
 }

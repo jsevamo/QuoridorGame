@@ -11,6 +11,8 @@ using UnityEngine.UI;
 
 public class QuoridorController : MonoBehaviour
 {
+    
+    //TODO: FIX NUMBER OF STEPS BUG
     public GameObject BoardPiece;
     public GameObject PlayPiece;
     public GameObject BlockerPiece;
@@ -43,10 +45,23 @@ public class QuoridorController : MonoBehaviour
     private GameObject centerPiece;
 
     [SerializeField] private Blocker actualBlocker;
-    
+
+    public Blocker ActualBlocker
+    {
+        get { return actualBlocker; }
+        set { actualBlocker = value; }
+    }
+
     public Text BlockerCountText;
     public Text PlayerTurnText;
     
+    List<PlaceBlocker> placeBlockerList = new List<PlaceBlocker>();
+
+    public List<PlaceBlocker> PlaceBlockerList
+    {
+        get { return placeBlockerList; }
+        set { placeBlockerList = value; }
+    }
 
 
     // Use this for initialization
@@ -342,11 +357,14 @@ public class QuoridorController : MonoBehaviour
                 if (hit.transform.gameObject.tag == "PlaceBlocker")
                 {
                     PlaceBlocker blockerPlace = hit.transform.GetComponent<PlaceBlocker>();                   
-                    actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);                                      
+                    actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);  
                     movablePiece.IsTurnDone = true;
+                    blockerPlace.setBlocker(actualBlocker);
                     actualBlocker = null;
                     movablePiece.NumOfBlockPieces--;
+                    
                     blockerPlace.HasBlocker = true;
+                    
                 }
 
             }

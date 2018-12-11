@@ -18,6 +18,12 @@ public class Blocker : MonoBehaviour
 	
 	[SerializeField] private OrientationEmun orientation;
 
+	public OrientationEmun Orientation
+	{
+		get { return orientation; }
+		set { orientation = value; }
+	}
+
 	public bool ShouldBeDeleted
 	{
 		get { return shouldBeDeleted; }

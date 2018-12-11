@@ -151,7 +151,11 @@ public class BoardPiece : MonoBehaviour
             QuoridorController QC = GameObject.FindWithTag("GameController").GetComponent<QuoridorController>();
 
             boardPlacePiece.transform.parent = QC.BlockerPlace1.gameObject.transform;
+            QC.PlaceBlockerList.Add(boardPlacePiece.GetComponent<PlaceBlocker>());
+            
         }
+        
+        
             
 
     }
