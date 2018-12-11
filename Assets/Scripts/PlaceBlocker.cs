@@ -76,19 +76,71 @@ public class PlaceBlocker : MonoBehaviour
 			
 			if (QC.ActualBlocker)
 			{
-				if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal)
+				if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				    blocker.Orientation == Blocker.OrientationEmun.Horizontal)
 				{
-					if(rightBlocker)
+					if(rightBlocker && !rightBlocker.hasBlocker)
 						rightBlocker.isActive(false);
 					
-					if(leftBlocker)
+					if(leftBlocker && !leftBlocker.hasBlocker)
 						leftBlocker.isActive(false);
+					
+					if(frontBlocker && !frontBlocker.hasBlocker)
+						frontBlocker.isActive(true);
+
+					if (backBlocker && !backBlocker.hasBlocker)
+						backBlocker.isActive(true);
 				}
-				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical)
+				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical &&
+				         blocker.Orientation == Blocker.OrientationEmun.Horizontal)
 				{
-					if(rightBlocker)
+					if(rightBlocker && !rightBlocker.hasBlocker)
 						rightBlocker.isActive(true);
+					
+					if(leftBlocker && !leftBlocker.hasBlocker)
+						leftBlocker.isActive(true);
+					
+					if(frontBlocker && !frontBlocker.hasBlocker)
+						frontBlocker.isActive(true);
+
+					if (backBlocker && !backBlocker.hasBlocker)
+						backBlocker.isActive(true);
+	
 				}
+				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				         blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if(rightBlocker && !rightBlocker.hasBlocker)
+						rightBlocker.isActive(true);
+					
+					if(leftBlocker && !leftBlocker.hasBlocker)
+						leftBlocker.isActive(true);
+					
+					if(frontBlocker && !frontBlocker.hasBlocker)
+						frontBlocker.isActive(true);
+
+					if (backBlocker && !backBlocker.hasBlocker)
+						backBlocker.isActive(true);
+					
+				}
+				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical &&
+				         blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if(rightBlocker && !rightBlocker.hasBlocker)
+						rightBlocker.isActive(true);
+					
+					if(leftBlocker && !leftBlocker.hasBlocker)
+						leftBlocker.isActive(true);
+					
+					if(frontBlocker && !frontBlocker.hasBlocker)
+						frontBlocker.isActive(false);
+
+					if (backBlocker && !backBlocker.hasBlocker)
+						backBlocker.isActive(false);
+					
+				}
+
+				
 			}
 	    }
 	
