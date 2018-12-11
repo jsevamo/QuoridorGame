@@ -341,11 +341,12 @@ public class QuoridorController : MonoBehaviour
 
                 if (hit.transform.gameObject.tag == "PlaceBlocker")
                 {
-
-                    actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);
+                    PlaceBlocker blockerPlace = hit.transform.GetComponent<PlaceBlocker>();                   
+                    actualBlocker.PlaceBlockerOnBoard(hit.transform.gameObject);                                      
                     movablePiece.IsTurnDone = true;
                     actualBlocker = null;
                     movablePiece.NumOfBlockPieces--;
+                    blockerPlace.HasBlocker = true;
                 }
 
             }

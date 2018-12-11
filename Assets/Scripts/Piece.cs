@@ -15,7 +15,7 @@ public class Piece : MonoBehaviour
 	[SerializeField] private bool isCurrentlyPlaying;
 	[SerializeField] private bool hasWon;
 	[SerializeField] private Vector3 forwardVector;
-	private int numPlaysForward;
+	[SerializeField] private int numPlaysForward;
 	[SerializeField] private int numOfBlockPieces;
 
 

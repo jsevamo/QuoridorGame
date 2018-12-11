@@ -145,7 +145,7 @@ public class BoardPiece : MonoBehaviour
         if (rightBoard && frontBoard)
         {
             GameObject boardPlacePiece = Instantiate(PlaceBlockerPiece, transform.position + 
-            new Vector3(transform.localScale.x/2, 0, transform.localScale.z/2), Quaternion.identity)
+            new Vector3(transform.localScale.x/2 + 0.1f, 0, transform.localScale.z/2+ 0.1f), Quaternion.identity)
                 as GameObject;
 
             QuoridorController QC = GameObject.FindWithTag("GameController").GetComponent<QuoridorController>();
