@@ -473,14 +473,28 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {  
+                            
                             RaycastHit hit2;
                             if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
                                 .transform.position, transform.TransformDirection(Vector3.forward), out hit2))
                             {
                                 if (_boardPiece.FrontBoard.HasSurroundingBlocker)
                                 {
-                                    if(_boardPiece.FrontFrontBoard)
-                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                    
+                                    if (_boardPiece.FrontFrontBoard.HasPlayerOnTop)
+                                    {
+                                        if(_boardPiece.FrontFrontBoard)
+                                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;                                       
+                                            
+                                    }
+                                    else
+                                    {
+                                        if(_boardPiece.FrontFrontBoard)
+                                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                        
+                                        
+                                    }
+                                    
                                 }
                                 else
                                 {
@@ -528,6 +542,8 @@ public class QuoridorController : MonoBehaviour
                                             {
                                                 if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                                
+                                                
                                             }
                                             else
                                             {
@@ -540,6 +556,8 @@ public class QuoridorController : MonoBehaviour
                                         {
                                             if(_boardPiece.FrontFrontBoard)
                                             _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                            
+                                            
                                         }
                                  
                                     }
@@ -555,6 +573,7 @@ public class QuoridorController : MonoBehaviour
                                             {
                                                 if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                                
                                             }
                                             else
                                             {
@@ -566,6 +585,7 @@ public class QuoridorController : MonoBehaviour
                                         {
                                             if(_boardPiece.FrontFrontBoard)
                                             _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                           
                                         }
                                  
                                     }
@@ -575,7 +595,7 @@ public class QuoridorController : MonoBehaviour
                                 else
                                 {
                                     if(_boardPiece.FrontFrontBoard)
-                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;                                   
                                 }
                             }
                             else
@@ -609,8 +629,22 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.RightBoard.HasSurroundingBlocker)
                                 {
-                                    if(_boardPiece.RightRightBoard)
-                                    _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                    
+                                    
+                                    if (_boardPiece.RightRightBoard.HasPlayerOnTop)
+                                    {
+                                        if(_boardPiece.RightRightBoard)
+                                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;                                     
+                                            
+                                    }
+                                    else
+                                    {
+                                        if(_boardPiece.RightRightBoard)
+                                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                        
+                                        
+                                    }
+
                                 }
                                 else
                                 {
@@ -731,8 +765,19 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.LeftBoard.HasSurroundingBlocker)
                                 {
-                                    if(_boardPiece.LeftLeftBoard)
-                                    _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                    if (_boardPiece.LeftLeftBoard.HasPlayerOnTop)
+                                    {
+                                        if(_boardPiece.LeftLeftBoard)
+                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;                                     
+                                            
+                                    }
+                                    else
+                                    {
+                                        if(_boardPiece.LeftLeftBoard)
+                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                        
+                                        
+                                    }
                                 }
                                 else
                                 {
@@ -853,8 +898,19 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.BackBoard.HasSurroundingBlocker)
                                 {
-                                    if(_boardPiece.BackBackBoard)
-                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                    if (_boardPiece.BackBackBoard.HasPlayerOnTop)
+                                    {
+                                        if(_boardPiece.BackBackBoard)
+                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;                                     
+                                            
+                                    }
+                                    else
+                                    {
+                                        if(_boardPiece.BackBackBoard)
+                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                        
+                                        
+                                    }
                                 }
                                 else
                                 {
