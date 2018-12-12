@@ -515,15 +515,14 @@ public class QuoridorController : MonoBehaviour
                     {
                         RaycastHit hit2;
                         if (Physics.Raycast(movablePiece.transform.position, 
-                            transform.TransformDirection(Vector3.forward), 
-                            out hit2))
+                            transform.TransformDirection(Vector3.forward), 0.6f 
+                            ))
                         {
                             
                                 if(_boardPiece.FrontBoard)
                                     _boardPiece.FrontBoard.PieceCanBeMovedHere = false;
                             
-                            
-                            
+
                         }
                         else
                         {
@@ -672,7 +671,7 @@ public class QuoridorController : MonoBehaviour
                         RaycastHit hit2;
                         if (Physics.Raycast(movablePiece.transform.position, 
                             transform.TransformDirection(Vector3.right), 
-                            out hit2,1))
+                            0.6f))
                         {
                            
                                 if(_boardPiece.RightBoard)
@@ -814,12 +813,12 @@ public class QuoridorController : MonoBehaviour
                         RaycastHit hit2;
                         if (Physics.Raycast(movablePiece.transform.position, 
                             transform.TransformDirection(Vector3.left), 
-                            out hit2,1))
+                            0.6f))
                         {
    
                                 if(_boardPiece.LeftBoard)
                                     _boardPiece.LeftBoard.PieceCanBeMovedHere = false;
- //here
+
                         }
                         else
                         {
@@ -956,7 +955,7 @@ public class QuoridorController : MonoBehaviour
                         RaycastHit hit2;
                         if (Physics.Raycast(movablePiece.transform.position, 
                             transform.TransformDirection(Vector3.back), 
-                            out hit2,1))
+                            0.6f))
                         {
 
                                 if(_boardPiece.BackBoard)
