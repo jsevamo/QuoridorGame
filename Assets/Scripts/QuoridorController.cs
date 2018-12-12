@@ -534,6 +534,7 @@ public class QuoridorController : MonoBehaviour
                                 if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
                                     .transform.position, transform.TransformDirection(Vector3.forward), out hit3))
                                 {
+                                    
                                     RaycastHit hit4;
                                     if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
                                         .transform.position, transform.TransformDirection(Vector3.right), out hit4))
@@ -544,8 +545,16 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
-                                                if(_boardPiece.FrontFrontBoard)
-                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.FrontFrontBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.FrontFrontBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false; 
+                                                }
                                                 
                                                 
                                             }
@@ -575,8 +584,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
-                                                if(_boardPiece.FrontFrontBoard)
-                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.FrontFrontBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.FrontFrontBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false; 
+                                                }
+                                                
+                                                
                                                 
                                             }
                                             else
@@ -697,8 +716,17 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
-                                                if(_boardPiece.RightRightBoard)
-                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.RightRightBoard)
+                                                        _boardPiece.RightRightBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.RightRightBoard)
+                                                        _boardPiece.RightRightBoard.PieceCanBeMovedHere = false; 
+                                                }
+
                                             }
                                             else
                                             {
@@ -723,8 +751,17 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
-                                                if(_boardPiece.RightRightBoard)
-                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.RightRightBoard)
+                                                        _boardPiece.RightRightBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.RightRightBoard)
+                                                        _boardPiece.RightRightBoard.PieceCanBeMovedHere = false; 
+                                                }
+
                                             }
                                             else
                                             {
@@ -838,8 +875,17 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
-                                                if(_boardPiece.LeftLeftBoard)
-                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.LeftLeftBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.LeftLeftBoard)
+                                                        _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false; 
+                                                }
+
                                             }
                                             else
                                             {
@@ -865,8 +911,17 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
-                                                if(_boardPiece.LeftLeftBoard)
-                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.LeftLeftBoard)
+                                                        _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.LeftLeftBoard)
+                                                        _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false; 
+                                                }
+
                                             }
                                             else
                                             {
@@ -983,8 +1038,17 @@ public class QuoridorController : MonoBehaviour
                                                 if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                     == global::Blocker.OrientationEmun.Horizontal)
                                                 {
-                                                    if(_boardPiece.BackBackBoard)
-                                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                                    if (hit3.distance > 1.3f)
+                                                    {
+                                                        if(_boardPiece.BackBackBoard)
+                                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = true; 
+                                                    }
+                                                    else
+                                                    {
+                                                        if(_boardPiece.BackBackBoard)
+                                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = false; 
+                                                    }
+
                                                 }
                                                 else
                                                 {
@@ -1015,8 +1079,17 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
-                                                if(_boardPiece.BackBackBoard)
-                                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                                if (hit3.distance > 1.3f)
+                                                {
+                                                    if(_boardPiece.BackBackBoard)
+                                                        _boardPiece.BackBackBoard.PieceCanBeMovedHere = true; 
+                                                }
+                                                else
+                                                {
+                                                    if(_boardPiece.BackBackBoard)
+                                                        _boardPiece.BackBackBoard.PieceCanBeMovedHere = false; 
+                                                }
+
                                             }
                                             else
                                             {
