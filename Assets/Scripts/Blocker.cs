@@ -5,8 +5,7 @@ using UnityEngine;
 public class Blocker : MonoBehaviour
 {
 	[SerializeField] private bool isBeingDragged;
-	private bool shouldBeDeleted;
-	
+	[SerializeField] private bool hasBeenPlaced;
 	
 	[SerializeField]
 	public enum OrientationEmun
@@ -24,11 +23,7 @@ public class Blocker : MonoBehaviour
 		set { orientation = value; }
 	}
 
-	public bool ShouldBeDeleted
-	{
-		get { return shouldBeDeleted; }
-		set { shouldBeDeleted = value; }
-	}
+
 
 	public bool IsBeingDragged
 	{
@@ -40,7 +35,7 @@ public class Blocker : MonoBehaviour
 	void Awake ()
 	{
 		isBeingDragged = false;
-		shouldBeDeleted = false;
+		hasBeenPlaced = false;
 		orientation = OrientationEmun.Horizontal;
 	}
 	
@@ -52,20 +47,16 @@ public class Blocker : MonoBehaviour
 			AttachBlockerToCursor();
 			setOrientation();
 		}
-		else
-		{
-			if (shouldBeDeleted)
-			{
-				DestroyBlocker();
-			}
-
-		}
 			
-		//TODO: CHANGE THIS KEY TO ESCAPE TO DELETE BLOCKER
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			isBeingDragged = false;
-			shouldBeDeleted = true;
+			if (!hasBeenPlaced)
+			{
+				Destroy(this);
+				Destroy(this.gameObject);
+			}
+			
+
 		}
 		
 	}
@@ -103,10 +94,6 @@ public class Blocker : MonoBehaviour
 		transform.position = rayPoint;
 	}
 
-	public void DestroyBlocker()
-	{
-		Destroy(this.gameObject);
-	}
 
 	public void PlaceBlockerOnBoard(GameObject placeHere)
 	{
@@ -115,5 +102,7 @@ public class Blocker : MonoBehaviour
 		transform.position = placeHere.transform.position + new Vector3(0,transform.localScale.y/2, 0);
 
 		GetComponent<BoxCollider>().enabled = true;
+
+		hasBeenPlaced = true;
 	}
 }

@@ -308,16 +308,17 @@ public class QuoridorController : MonoBehaviour
         }
         
     }
-
+    
+    //TODO: FIX THIS. WE DON'T USE SHOULD BE DELETED ANYMORE
     void CheckIfBlockDeleted()
     {
         if (actualBlocker)
         {
-            if (actualBlocker.ShouldBeDeleted)
+            /*if (actualBlocker.ShouldBeDeleted)
             {
                 Destroy(GameObject.FindWithTag("Blocker"));
                 actualBlocker = null;
-            }
+            }*/
         }
         
     }
