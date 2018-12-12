@@ -468,6 +468,7 @@ public class QuoridorController : MonoBehaviour
                     {
                         if (!_boardPiece.FrontBoard.HasPlayerOnTop)
                         {
+                            if(_boardPiece.FrontBoard)
                             _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
                         }
                         else
@@ -478,15 +479,18 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.FrontBoard.HasSurroundingBlocker)
                                 {
+                                    if(_boardPiece.FrontFrontBoard)
                                     _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
                                 }
                                 else
                                 {
+                                    if(_boardPiece.FrontFrontBoard)
                                     _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.FrontFrontBoard)
                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;                              
                                 
                             }
@@ -522,16 +526,19 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
+                                                if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
                                             }
                                             
                                         }
                                         else
                                         {
+                                            if(_boardPiece.FrontFrontBoard)
                                             _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -546,15 +553,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
+                                                if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.FrontFrontBoard)
                                                 _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.FrontFrontBoard)
                                             _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -564,11 +574,13 @@ public class QuoridorController : MonoBehaviour
                                 }
                                 else
                                 {
+                                    if(_boardPiece.FrontFrontBoard)
                                     _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.FrontFrontBoard)
                                 _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -586,6 +598,7 @@ public class QuoridorController : MonoBehaviour
                     {
                         if (!_boardPiece.RightBoard.HasPlayerOnTop)
                         {
+                            if(_boardPiece.RightBoard)
                             _boardPiece.RightBoard.PieceCanBeMovedHere = true;
                         }
                         else
@@ -596,15 +609,18 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.RightBoard.HasSurroundingBlocker)
                                 {
+                                    if(_boardPiece.RightRightBoard)
                                     _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
                                 }
                                 else
                                 {
+                                    if(_boardPiece.RightRightBoard)
                                     _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.RightRightBoard)
                                 _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -618,6 +634,7 @@ public class QuoridorController : MonoBehaviour
                             out hit2,1))
                         {
 
+                            if(_boardPiece.RightBoard)
                             _boardPiece.RightBoard.PieceCanBeMovedHere = false;
                         }
                         else
@@ -638,15 +655,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
+                                                if(_boardPiece.RightRightBoard)
                                                 _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.RightRightBoard)
                                                 _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.RightRightBoard)
                                             _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -661,15 +681,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
+                                                if(_boardPiece.RightRightBoard)
                                                 _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.RightRightBoard)
                                                 _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.RightRightBoard)
                                             _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -677,11 +700,13 @@ public class QuoridorController : MonoBehaviour
                                 }
                                 else
                                 {
+                                    if(_boardPiece.RightRightBoard)
                                     _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.RightRightBoard)
                                 _boardPiece.RightBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -695,6 +720,7 @@ public class QuoridorController : MonoBehaviour
                     {
                         if (!_boardPiece.LeftBoard.HasPlayerOnTop)
                         {
+                            if(_boardPiece.LeftBoard)
                             _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
                         }
                         else
@@ -705,15 +731,18 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.LeftBoard.HasSurroundingBlocker)
                                 {
+                                    if(_boardPiece.LeftLeftBoard)
                                     _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
                                 }
                                 else
                                 {
+                                    if(_boardPiece.LeftLeftBoard)
                                     _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.LeftLeftBoard)
                                 _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -726,8 +755,8 @@ public class QuoridorController : MonoBehaviour
                             transform.TransformDirection(Vector3.left), 
                             out hit2,1))
                         {
-
-                            _boardPiece.LeftBoard.PieceCanBeMovedHere = false;
+                            if(_boardPiece.LeftBoard)
+                           _boardPiece.LeftBoard.PieceCanBeMovedHere = false;
                         }
                         else
                         {
@@ -747,15 +776,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
+                                                if(_boardPiece.LeftLeftBoard)
                                                 _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.LeftLeftBoard)
                                                 _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.LeftLeftBoard)
                                             _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -770,15 +802,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Vertical)
                                             {
+                                                if(_boardPiece.LeftLeftBoard)
                                                 _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.LeftLeftBoard)
                                                 _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.LeftLeftBoard)
                                             _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -786,11 +821,13 @@ public class QuoridorController : MonoBehaviour
                                 }
                                 else
                                 {
+                                    if(_boardPiece.LeftLeftBoard)
                                     _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.LeftLeftBoard)
                                 _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -805,6 +842,7 @@ public class QuoridorController : MonoBehaviour
                     {
                         if (!_boardPiece.BackBoard.HasPlayerOnTop)
                         {
+                            if(_boardPiece.BackBoard)
                             _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                         }
                         else
@@ -815,15 +853,18 @@ public class QuoridorController : MonoBehaviour
                             {
                                 if (_boardPiece.BackBoard.HasSurroundingBlocker)
                                 {
+                                    if(_boardPiece.BackBackBoard)
                                     _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
                                 }
                                 else
                                 {
+                                    if(_boardPiece.BackBackBoard)
                                     _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.BackBackBoard)
                                 _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -836,8 +877,8 @@ public class QuoridorController : MonoBehaviour
                             transform.TransformDirection(Vector3.back), 
                             out hit2,1))
                         {
-
-                            _boardPiece.BackBoard.PieceCanBeMovedHere = false;
+                            if(_boardPiece.BackBoard)
+                                 _boardPiece.BackBoard.PieceCanBeMovedHere = false;
                         }
                         else
                         {
@@ -860,20 +901,24 @@ public class QuoridorController : MonoBehaviour
                                                 if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                     == global::Blocker.OrientationEmun.Horizontal)
                                                 {
+                                                    if(_boardPiece.BackBackBoard)
                                                     _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
                                                 }
                                                 else
                                                 {
+                                                    if(_boardPiece.BackBackBoard)
                                                     _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                                                 }
                                             }
                                             else
                                             {
+                                                if(_boardPiece.BackBackBoard)
                                                 _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.BackBackBoard)
                                             _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -888,15 +933,18 @@ public class QuoridorController : MonoBehaviour
                                             if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
                                                 == global::Blocker.OrientationEmun.Horizontal)
                                             {
+                                                if(_boardPiece.BackBackBoard)
                                                 _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
                                             }
                                             else
                                             {
+                                                if(_boardPiece.BackBackBoard)
                                                 _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                                             }
                                         }
                                         else
                                         {
+                                            if(_boardPiece.BackBackBoard)
                                             _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
                                         }
                                  
@@ -904,11 +952,13 @@ public class QuoridorController : MonoBehaviour
                                 }
                                 else
                                 {
+                                    if(_boardPiece.BackBackBoard)
                                     _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
                                 }
                             }
                             else
                             {
+                                if(_boardPiece.BackBackBoard)
                                 _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                             }
                         }
