@@ -471,9 +471,17 @@ public class QuoridorController : MonoBehaviour
                             _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
                         }
                         else
-                        {
-                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
-                            
+                        {  
+                            RaycastHit hit2;
+                            if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
+                                .transform.position, transform.TransformDirection(Vector3.forward), out hit2))
+                            {
+                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                            }
+                            else
+                            {
+                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                            }
                             
                         }
                     }
@@ -517,7 +525,16 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                            RaycastHit hit2;
+                            if (Physics.Raycast(_boardPiece.RightBoard.PlayerOnTop.gameObject
+                                .transform.position, transform.TransformDirection(Vector3.right), out hit2))
+                            {
+                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                            }
+                            else
+                            {
+                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                         
                     }
@@ -556,7 +573,16 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                            RaycastHit hit2;
+                            if (Physics.Raycast(_boardPiece.LeftBoard.PlayerOnTop.gameObject
+                                .transform.position, transform.TransformDirection(Vector3.left), out hit2))
+                            {
+                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                            }
+                            else
+                            {
+                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                        
                     }
@@ -596,7 +622,16 @@ public class QuoridorController : MonoBehaviour
                         }
                         else
                         {
-                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                            RaycastHit hit2;
+                            if (Physics.Raycast(_boardPiece.BackBoard.PlayerOnTop.gameObject
+                                .transform.position, transform.TransformDirection(Vector3.back), out hit2))
+                            {
+                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                            }
+                            else
+                            {
+                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                            }
                         }
                         
                     }
