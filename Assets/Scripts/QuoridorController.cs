@@ -366,11 +366,14 @@ public class QuoridorController : MonoBehaviour
                     movablePiece.NumOfBlockPieces--;
                     
                     blockerPlace.HasBlocker = true;
-
-                    blockerPlace.Bp1.HasSurroundingBlocker = true;
-                    blockerPlace.Bp2.HasSurroundingBlocker = true;
-                    blockerPlace.Bp3.HasSurroundingBlocker = true;
-                    blockerPlace.Bp4.HasSurroundingBlocker = true;
+                    if(blockerPlace.Bp1)
+                        blockerPlace.Bp1.HasSurroundingBlocker = true;
+                    if(blockerPlace.Bp2)
+                        blockerPlace.Bp2.HasSurroundingBlocker = true;
+                    if(blockerPlace.Bp3)
+                        blockerPlace.Bp3.HasSurroundingBlocker = true;
+                    if(blockerPlace.Bp4)
+                        blockerPlace.Bp4.HasSurroundingBlocker = true;
 
                 }
 

@@ -105,7 +105,7 @@ public class Blocker : MonoBehaviour
 
 	public void DestroyBlocker()
 	{
-		Destroy(this);
+		Destroy(this.gameObject);
 	}
 
 	public void PlaceBlockerOnBoard(GameObject placeHere)
