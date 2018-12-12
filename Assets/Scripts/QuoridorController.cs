@@ -476,11 +476,19 @@ public class QuoridorController : MonoBehaviour
                             if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
                                 .transform.position, transform.TransformDirection(Vector3.forward), out hit2))
                             {
-                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                if (_boardPiece.FrontBoard.HasSurroundingBlocker)
+                                {
+                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                }
+                                else
+                                {
+                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
-                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;                              
+                                
                             }
                             
                         }
@@ -492,15 +500,72 @@ public class QuoridorController : MonoBehaviour
                             transform.TransformDirection(Vector3.forward), 
                             out hit2,1))
                         {
-
-                            _boardPiece.FrontBoard.PieceCanBeMovedHere = false;
+                           _boardPiece.FrontBoard.PieceCanBeMovedHere = false;
                         }
                         else
                         {
                             
                             if (_boardPiece.FrontBoard.HasPlayerOnTop)
                             {
-                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                
+                                RaycastHit hit3;
+                                if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
+                                    .transform.position, transform.TransformDirection(Vector3.forward), out hit3))
+                                {
+                                    RaycastHit hit4;
+                                    if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.right), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Vertical)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Horizontal)
+                                            {
+                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                            }
+                                            
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                    
+                                    if (Physics.Raycast(_boardPiece.FrontBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.left), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Vertical)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Horizontal)
+                                            {
+                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    _boardPiece.FrontFrontBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -529,7 +594,14 @@ public class QuoridorController : MonoBehaviour
                             if (Physics.Raycast(_boardPiece.RightBoard.PlayerOnTop.gameObject
                                 .transform.position, transform.TransformDirection(Vector3.right), out hit2))
                             {
-                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                if (_boardPiece.RightBoard.HasSurroundingBlocker)
+                                {
+                                    _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                }
+                                else
+                                {
+                                    _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -552,7 +624,61 @@ public class QuoridorController : MonoBehaviour
                         {
                             if (_boardPiece.RightBoard.HasPlayerOnTop)
                             {
-                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                RaycastHit hit3;
+                                if (Physics.Raycast(_boardPiece.RightBoard.PlayerOnTop.gameObject
+                                    .transform.position, transform.TransformDirection(Vector3.right), out hit3))
+                                {
+                                    RaycastHit hit4;
+                                    if (Physics.Raycast(_boardPiece.RightBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.back), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Horizontal)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Vertical)
+                                            {
+                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                    
+                                    if (Physics.Raycast(_boardPiece.RightBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.forward), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Horizontal)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Vertical)
+                                            {
+                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.RightRightBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                }
+                                else
+                                {
+                                    _boardPiece.RightRightBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -577,7 +703,14 @@ public class QuoridorController : MonoBehaviour
                             if (Physics.Raycast(_boardPiece.LeftBoard.PlayerOnTop.gameObject
                                 .transform.position, transform.TransformDirection(Vector3.left), out hit2))
                             {
-                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                if (_boardPiece.LeftBoard.HasSurroundingBlocker)
+                                {
+                                    _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                }
+                                else
+                                {
+                                    _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -600,7 +733,61 @@ public class QuoridorController : MonoBehaviour
                         {
                             if (_boardPiece.LeftBoard.HasPlayerOnTop)
                             {
-                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                RaycastHit hit3;
+                                if (Physics.Raycast(_boardPiece.LeftBoard.PlayerOnTop.gameObject
+                                    .transform.position, transform.TransformDirection(Vector3.left), out hit3))
+                                {
+                                    RaycastHit hit4;
+                                    if (Physics.Raycast(_boardPiece.LeftBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.back), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Horizontal)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Vertical)
+                                            {
+                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                    
+                                    if (Physics.Raycast(_boardPiece.LeftBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.forward), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Horizontal)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Vertical)
+                                            {
+                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                }
+                                else
+                                {
+                                    _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -626,7 +813,14 @@ public class QuoridorController : MonoBehaviour
                             if (Physics.Raycast(_boardPiece.BackBoard.PlayerOnTop.gameObject
                                 .transform.position, transform.TransformDirection(Vector3.back), out hit2))
                             {
-                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                if (_boardPiece.BackBoard.HasSurroundingBlocker)
+                                {
+                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                }
+                                else
+                                {
+                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
@@ -649,7 +843,69 @@ public class QuoridorController : MonoBehaviour
                         {
                             if (_boardPiece.BackBoard.HasPlayerOnTop)
                             {
-                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                RaycastHit hit3;
+                                if (Physics.Raycast(_boardPiece.BackBoard.PlayerOnTop.gameObject
+                                    .transform.position, transform.TransformDirection(Vector3.back), out hit3))
+                                {
+                                    RaycastHit hit4;
+                                    if (Physics.Raycast(_boardPiece.BackBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.left), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Vertical)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Horizontal)
+                                            {
+                                                if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                    == global::Blocker.OrientationEmun.Horizontal)
+                                                {
+                                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                                }
+                                                else
+                                                {
+                                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                    
+                                    if (Physics.Raycast(_boardPiece.BackBoard.PlayerOnTop.gameObject
+                                        .transform.position, transform.TransformDirection(Vector3.right), out hit4))
+                                    {
+                                        if (hit4.transform.gameObject.GetComponent<Blocker>().Orientation
+                                            == global::Blocker.OrientationEmun.Vertical)
+                                        {
+                                            if (hit3.transform.gameObject.GetComponent<Blocker>().Orientation
+                                                == global::Blocker.OrientationEmun.Horizontal)
+                                            {
+                                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                            }
+                                            else
+                                            {
+                                                _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            _boardPiece.BackBackBoard.PieceCanBeMovedHere = false;
+                                        }
+                                 
+                                    }
+                                }
+                                else
+                                {
+                                    _boardPiece.BackBackBoard.PieceCanBeMovedHere = true;
+                                }
                             }
                             else
                             {
