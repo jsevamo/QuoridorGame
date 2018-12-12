@@ -516,9 +516,10 @@ public class QuoridorController : MonoBehaviour
                         RaycastHit hit2;
                         if (Physics.Raycast(movablePiece.transform.position, 
                             transform.TransformDirection(Vector3.forward), 
-                            out hit2,1))
+                            out hit2))
                         {
                            _boardPiece.FrontBoard.PieceCanBeMovedHere = false;
+                            
                         }
                         else
                         {
@@ -600,8 +601,10 @@ public class QuoridorController : MonoBehaviour
                             }
                             else
                             {
-                                if(_boardPiece.FrontFrontBoard)
+                                if(_boardPiece.FrontBoard)
                                 _boardPiece.FrontBoard.PieceCanBeMovedHere = true;
+                                
+                                
                             }
                         }
                         
@@ -740,7 +743,7 @@ public class QuoridorController : MonoBehaviour
                             }
                             else
                             {
-                                if(_boardPiece.RightRightBoard)
+                                if(_boardPiece.RightBoard)
                                 _boardPiece.RightBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -872,7 +875,7 @@ public class QuoridorController : MonoBehaviour
                             }
                             else
                             {
-                                if(_boardPiece.LeftLeftBoard)
+                                if(_boardPiece.LeftBoard)
                                 _boardPiece.LeftBoard.PieceCanBeMovedHere = true;
                             }
                         }
@@ -1014,7 +1017,7 @@ public class QuoridorController : MonoBehaviour
                             }
                             else
                             {
-                                if(_boardPiece.BackBackBoard)
+                                if(_boardPiece.BackBoard)
                                 _boardPiece.BackBoard.PieceCanBeMovedHere = true;
                             }
                         }
