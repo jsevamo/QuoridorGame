@@ -235,6 +235,7 @@ public class BoardPiece : MonoBehaviour
         {
             leftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
             leftBoard2 = hit.transform.gameObject;
+            
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit))
@@ -243,10 +244,7 @@ public class BoardPiece : MonoBehaviour
             backBoard2 = hit.transform.gameObject;
         }
         
-        /*if (Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(1,0,-1)), out hit))
-        {
-            diagonalBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
-        }*/
+        
         
         if (rightBoard != null)
         {
@@ -269,25 +267,45 @@ public class BoardPiece : MonoBehaviour
             }
         }
 
-        if (rightBoard == null) return;
-        if (Physics.Raycast(rightBoard2.transform.position, 
-            transform.TransformDirection(Vector3.right), out hit))
+        if (rightBoard)
         {
-            rightRightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            if (Physics.Raycast(rightBoard2.transform.position, 
+                transform.TransformDirection(Vector3.right), out hit))
+            {
+                rightRightBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            }
         }
+        
 
-        if (leftBoard == null) return;
+        /*if (leftBoard == null) return;
         if (Physics.Raycast(leftBoard2.transform.position, 
             transform.TransformDirection(Vector3.left), out hit))
         {
             leftLeftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+        }*/
+
+        if (leftBoard)
+        {
+            if (Physics.Raycast(leftBoard2.transform.position, 
+                transform.TransformDirection(Vector3.left), out hit))
+            {
+                leftLeftBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            }
         }
 
-        if (backBoard == null) return;
-        if (Physics.Raycast(backBoard2.transform.position, 
-            transform.TransformDirection(Vector3.back), out hit))
+        
+        
+
+
+        
+
+        if (backBoard)
         {
-            backBackBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            if (Physics.Raycast(backBoard2.transform.position, 
+                transform.TransformDirection(Vector3.back), out hit))
+            {
+                backBackBoard = hit.transform.gameObject.GetComponent<BoardPiece>();
+            }
         }
 
 

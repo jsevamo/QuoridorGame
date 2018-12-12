@@ -814,13 +814,16 @@ public class QuoridorController : MonoBehaviour
                                     if (_boardPiece.LeftLeftBoard.HasPlayerOnTop)
                                     {
                                         if(_boardPiece.LeftLeftBoard)
-                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;                                     
+                                            _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;   
+                                        
+                                        Debug.Log("jejejeje");
                                             
                                     }
                                     else
                                     {
                                         if(_boardPiece.LeftLeftBoard)
                                             _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                        
                                         
                                      
                                         
@@ -837,9 +840,11 @@ public class QuoridorController : MonoBehaviour
                             }
                             else
                             {
-                                if(_boardPiece.LeftLeftBoard)
-                                _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
-                                
+
+                                if (_boardPiece.LeftLeftBoard)
+                                {
+                                    _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = true;
+                                }
 
                             }
                         }
@@ -898,6 +903,8 @@ public class QuoridorController : MonoBehaviour
                                         {
                                             if(_boardPiece.LeftLeftBoard)
                                             _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                            
+                                            Debug.Log("jejejeje");
                                         }
                                  
                                     }
@@ -920,6 +927,8 @@ public class QuoridorController : MonoBehaviour
                                                 {
                                                     if(_boardPiece.LeftLeftBoard)
                                                         _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false; 
+                                                    
+                                                    Debug.Log("jejejeje");
                                                 }
 
                                             }
@@ -935,6 +944,8 @@ public class QuoridorController : MonoBehaviour
                                         {
                                             if(_boardPiece.LeftLeftBoard)
                                             _boardPiece.LeftLeftBoard.PieceCanBeMovedHere = false;
+                                            
+                                            Debug.Log("jejejeje");
                                         }
                                  
                                     }
