@@ -153,22 +153,22 @@ public class Piece : MonoBehaviour
 			boardBackWardTwice = currentBoardPiece.RightRightBoard;
 		}
 
-		if (_selectedBoardPiece == boardForward)
+		if (_selectedBoardPiece == boardForward && _selectedBoardPiece.PieceCanBeMovedHere)
 		{
 			numPlaysForward++;
 		}
 
-		else if (_selectedBoardPiece == boardForwardTwice)
+		else if (_selectedBoardPiece == boardForwardTwice && _selectedBoardPiece.PieceCanBeMovedHere)
 		{
 			numPlaysForward = numPlaysForward + 2;
 		}
 
-		else if (_selectedBoardPiece == boardBackWard)
+		else if (_selectedBoardPiece == boardBackWard && _selectedBoardPiece.PieceCanBeMovedHere)
 		{
 			numPlaysForward--;
 		}
 		
-		else if (_selectedBoardPiece == boardBackWardTwice)
+		else if (_selectedBoardPiece == boardBackWardTwice && _selectedBoardPiece.PieceCanBeMovedHere)
 		{
 			numPlaysForward = numPlaysForward - 2;
 		}
