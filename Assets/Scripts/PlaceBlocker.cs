@@ -18,6 +18,10 @@ public class PlaceBlocker : MonoBehaviour
     [SerializeField] private PlaceBlocker rightBlocker;
     [SerializeField] private PlaceBlocker leftBlocker;
     [SerializeField] private PlaceBlocker backBlocker;
+	[SerializeField] private PlaceBlocker frontRightBlocker;
+	[SerializeField] private PlaceBlocker frontLeftBlocker;
+	[SerializeField] private PlaceBlocker backRightBlocker;
+	[SerializeField] private PlaceBlocker backLefttBlocker;
 
 	[SerializeField] private BoardPiece BP1;
 
@@ -100,87 +104,211 @@ public class PlaceBlocker : MonoBehaviour
             backBlocker = hit.transform.gameObject.GetComponent<PlaceBlocker>();
 
         }
-        
-        
+
+
+	    if (rightBlocker)
+	    {
+		    if (Physics.Raycast(rightBlocker.transform.position, transform.TransformDirection(Vector3.forward), out hit))
+		    {
+			    frontRightBlocker = hit.transform.gameObject.GetComponent<PlaceBlocker>();
+
+		    }
+	    }
+	    
+
+	    
+
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+
+
+
 		if (hasBlocker)
 		{
 			isActive(false);
+		}
 
-			
-			if (QC.ActualBlocker)
+
+		if (rightBlocker)
+		{
+			if (rightBlocker.hasBlocker)
 			{
+				if (rightBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal)
+				{
+					if (QC.ActualBlocker)
+					{
+						if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal)
+						{
+							isActive(false);
+						}
+						else
+						{
+							isActive(true);
+						}
+					}
+					
+				}
+			}
+		}
+		
+		if (leftBlocker)
+		{
+			if (leftBlocker.hasBlocker)
+			{
+				if (leftBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal)
+				{
+					if (QC.ActualBlocker)
+					{
+						if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal)
+						{
+							isActive(false);
+						}
+						else
+						{
+							isActive(true);
+						}
+					}
+					
+				}
+			}
+		}
+		
+		if (frontBlocker)
+		{
+			if (frontBlocker.hasBlocker)
+			{
+				if (frontBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical)
+						{
+							isActive(false);
+						}
+						else
+						{
+							isActive(true);
+						}
+					}
+					
+				}
+			}
+		}
+		
+		if (backBlocker)
+		{
+			if (backBlocker.hasBlocker)
+			{
+				if (backBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical)
+						{
+							isActive(false);
+						}
+						else
+						{
+							isActive(true);
+						}
+					}
+					
+				}
+			}
+		}
+
+		if (leftBlocker && backBlocker)
+		{
+			if (leftBlocker.hasBlocker && backBlocker.hasBlocker)
+			{
+				if (leftBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				    backBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						isActive(false);
+					}
+				}
+			}
+		}
+		
+		if (rightBlocker && backBlocker)
+		{
+			if (rightBlocker.hasBlocker && backBlocker.hasBlocker)
+			{
+				if (rightBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				    backBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						isActive(false);
+					}
+				}
+			}
+		}
+		
+		if (rightBlocker && frontBlocker)
+		{
+			if (rightBlocker.hasBlocker && frontBlocker.hasBlocker)
+			{
+				if (rightBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				    frontBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						isActive(false);
+					}
+				}
+			}
+		}
+		
+		if (leftBlocker && frontBlocker)
+		{
+			if (leftBlocker.hasBlocker && frontBlocker.hasBlocker)
+			{
+				if (leftBlocker.blocker.Orientation == Blocker.OrientationEmun.Horizontal &&
+				    frontBlocker.blocker.Orientation == Blocker.OrientationEmun.Vertical)
+				{
+					if (QC.ActualBlocker)
+					{
+						isActive(false);
+					}
+				}
+			}
+		}
+		
+
+		if (QC.ActualBlocker)
+			{/*
 				if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal &&
 				    blocker.Orientation == Blocker.OrientationEmun.Horizontal)
 				{
-					if(rightBlocker && !rightBlocker.hasBlocker)
-						rightBlocker.isActive(false);
-					
-					if(leftBlocker && !leftBlocker.hasBlocker)
+					if (leftBlocker)
+					{
 						leftBlocker.isActive(false);
-					
-					if(frontBlocker && !frontBlocker.hasBlocker)
-						frontBlocker.isActive(true);
+					}
 
-					if (backBlocker && !backBlocker.hasBlocker)
-						backBlocker.isActive(true);
+					if (rightBlocker)
+					{
+						rightBlocker.isActive(false);
+						Debug.Log("jeje");
+					}
 				}
-				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical &&
-				         blocker.Orientation == Blocker.OrientationEmun.Horizontal)
-				{
-					if(rightBlocker && !rightBlocker.hasBlocker)
-						rightBlocker.isActive(true);
-					
-					if(leftBlocker && !leftBlocker.hasBlocker)
-						leftBlocker.isActive(true);
-					
-					if(frontBlocker && !frontBlocker.hasBlocker)
-						frontBlocker.isActive(true);
-
-					if (backBlocker && !backBlocker.hasBlocker)
-						backBlocker.isActive(true);
-	
-				}
-				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Horizontal &&
-				         blocker.Orientation == Blocker.OrientationEmun.Vertical)
-				{
-					if(rightBlocker && !rightBlocker.hasBlocker)
-						rightBlocker.isActive(true);
-					
-					if(leftBlocker && !leftBlocker.hasBlocker)
-						leftBlocker.isActive(true);
-					
-					if(frontBlocker && !frontBlocker.hasBlocker)
-						frontBlocker.isActive(true);
-
-					if (backBlocker && !backBlocker.hasBlocker)
-						backBlocker.isActive(true);
-					
-				}
-				else if (QC.ActualBlocker.Orientation == Blocker.OrientationEmun.Vertical &&
-				         blocker.Orientation == Blocker.OrientationEmun.Vertical)
-				{
-					if(rightBlocker && !rightBlocker.hasBlocker)
-						rightBlocker.isActive(true);
-					
-					if(leftBlocker && !leftBlocker.hasBlocker)
-						leftBlocker.isActive(true);
-					
-					if(frontBlocker && !frontBlocker.hasBlocker)
-						frontBlocker.isActive(false);
-
-					if (backBlocker && !backBlocker.hasBlocker)
-						backBlocker.isActive(false);
-					
-				}
-
+				*/
+				
 				
 			}
-	    }
+
+		if (hasBlocker)
+		{
+			isActive(false);
+		}
+	    
 
 		/*if (hasCheckedBoardPieces)
 		{
