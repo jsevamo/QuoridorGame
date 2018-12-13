@@ -1137,7 +1137,11 @@ public class QuoridorController : MonoBehaviour
          
                 }
             }
+
+            
         }
+        
+        
         
        
         int layerMask =  LayerMask.GetMask("BoardPieces");
@@ -1151,7 +1155,8 @@ public class QuoridorController : MonoBehaviour
 
             if (!cam.GetComponent<SimpleCameraController>().IsCameraMoving)
             {
-                _boardPiece.setHighlight(true, movablePiece, board);
+                if(!_boardPiece.HasPlayerOnTop)
+                    _boardPiece.setHighlight(true, movablePiece, board);
             }
 
             
@@ -1163,5 +1168,7 @@ public class QuoridorController : MonoBehaviour
                 boardPiece.setHighlight(false, movablePiece, board);
             }
         }
+
+        
     }
 }
