@@ -371,7 +371,7 @@ MonoBehaviour:
     type: 2}
   PlaceBlockerPiece: {fileID: 1416366640051312, guid: ecd1c5cdc4e4a4fc899ab785943b270e,
     type: 2}
-  NumberOfPlayers: 2
+  NumberOfPlayers: 4
   actualTurn: 0
   movablePiece: {fileID: 0}
   actualBlocker: {fileID: 0}
@@ -678,7 +678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 29.9, y: 14.67}
+  m_AnchoredPosition: {x: 29.900024, y: 14.670013}
   m_SizeDelta: {x: 113.399994, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1628978087

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0585a03-b223-4e0f-8967-dcd819569fbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuoridorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuoridorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/QuoridorTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/QuoridorTest.unity" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +14,7 @@
     <session id="676609249">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
@@ -498,6 +498,7 @@
       <find>BlockerPlace</find>
       <find>PlaceBlockerOnBoard</find>
       <find>hasblocker</find>
+      <find>setHighlight</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -597,12 +598,12 @@
       <updated>1544561214316</updated>
       <workItem from="1544561219077" duration="9434000" />
       <workItem from="1544619821734" duration="21018000" />
-      <workItem from="1544661524465" duration="251000" />
+      <workItem from="1544661524465" duration="361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30703000" />
+    <option name="totallyTimeSpent" value="30813000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
